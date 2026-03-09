@@ -58,7 +58,7 @@
         <div class="metric"><div class="k">מרחק</div><div class="v" id="nearestDistance">—</div></div>
         <div class="metric"><div class="k">ETA</div><div class="v" id="nearestEta">—</div></div>
         <div class="metric"><div class="k">רמת אימות</div><div class="v" id="dataQuality">—</div></div>
-        <div class="metric"><div class="k">סטטוס 5 דקות</div><div class="v" id="etaWindowStatus">—</div></div>
+        <div class="metric"><div class="k">סטטוס 7 דקות</div><div class="v" id="etaWindowStatus">—</div></div>
       </div>
       <div class="cta">
         <button id="navBtn" class="btn primary" disabled>פתח Google Maps</button>
@@ -71,14 +71,14 @@
 
     <div class="card stack">
       <div class="row"><div class="tiny">3 היעדים הטובים כרגע</div><div class="tiny" id="refreshText">טעינה…</div></div>
-      <div class="tiny" id="windowHint">יעד עד 5 דקות יקבל עדיפות. אם אין כזה, תופיע המלצה לעצור במחסה קרוב.</div>
+      <div class="tiny" id="windowHint">יעד עד 7 דקות יקבל עדיפות. אם אין כזה, תופיע המלצה לעצור במחסה קרוב.</div>
       <div id="candidateList" class="list"></div>
     </div>
   </div>
 
   <div id="map"></div>
   <div class="footer">
-    זו גרסת V6 פתוחה ל-Web. הניווט נחסם אוטומטית אם אין יעד מחושב בתוך חלון 5 הדקות, ויש API חדש למיזוג נתונים חיים כך שניתן להחליף fallback ביעדים מאומתים בלי לשנות את הלוגיקה בדפדפן.
+    זו גרסת V6 פתוחה ל-Web. הניווט נחסם אוטומטית אם אין יעד מחושב בתוך חלון 7 הדקות, ויש API חדש למיזוג נתונים חיים כך שניתן להחליף fallback ביעדים מאומתים בלי לשנות את הלוגיקה בדפדפן.
   </div>
 </div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
@@ -95,7 +95,7 @@ const CONFIG = {
   behindPenaltyFactor: 3,
   lookAheadBonusMeters: 500,
   speakOnAlert: true,
-  etaTargetMinutes: 5,
+  etaTargetMinutes: 7,
 };
 let map, userMarker, routeLine, choiceLine, routeSegments=[], totalRouteMeters=0, stops=[], currentNearest=null, currentPosition=null, markers=[], manualAlert=false, lastSpoken='', lastStopsMeta=null, locationWatchId=null;
 const urlParams = new URLSearchParams(location.search);
@@ -179,16 +179,16 @@ function updateInstruction(active){
   if(active){
     $('instructionText').textContent = currentNearest.withinWindow
       ? `התראה פעילה. סע/י עכשיו אל ${currentNearest.name}. זמן הגעה משוער ${fmtEta(currentNearest.eta)}.`
-      : `התראה פעילה. אין כרגע יעד מאומת בתוך חלון 5 הדקות. היעד המחושב הקרוב ביותר הוא ${currentNearest.name} (${fmtEta(currentNearest.eta)}), ולכן ההמלצה היא לעצור מיד במחסה קרוב ובטוח ככל האפשר ולא להמשיך ליעד רחוק.`;
+      : `התראה פעילה. אין כרגע יעד מאומת בתוך חלון 7 הדקות. היעד המחושב הקרוב ביותר הוא ${currentNearest.name} (${fmtEta(currentNearest.eta)}), ולכן ההמלצה היא לעצור מיד במחסה קרוב ובטוח ככל האפשר ולא להמשיך ליעד רחוק.`;
     return;
   }
   $('instructionText').textContent = currentNearest.withinWindow
     ? `במצב המתנה: אם תיכנס עכשיו התראה, היעד המוביל יהיה ${currentNearest.name} (${fmtEta(currentNearest.eta)}).`
-    : `במצב המתנה: אין כרגע יעד מיגון מחושב בתוך 5 דקות. הכפתורים לניווט יישארו כבויים עד שיופיע יעד מתאים.`;
+    : `במצב המתנה: אין כרגע יעד מיגון מחושב בתוך 7 דקות. הכפתורים לניווט יישארו כבויים עד שיופיע יעד מתאים.`;
 }
 function etaWindowLabel(s){
   if(!s) return '—';
-  return s.withinWindow ? 'בתוך חלון' : 'מעל 5 דק׳';
+  return s.withinWindow ? 'בתוך חלון' : 'מעל 7 דק׳';
 }
 function updateNearest(pos,alertActive=false){
   currentPosition=pos;
@@ -207,7 +207,7 @@ function updateNearest(pos,alertActive=false){
     <div class="item">
       <strong>${i===0?'יעד מוביל':'חלופה'}: ${s.name} <span class="tag ${qualityTag(s.confidence)}">${qualityLabel(s)}</span></strong>
       <div>${s.kind}</div>
-      <div>${fmtDist(s.crow)} אווירי · ${fmtDist(s.routeGap)} לאורך הציר · ${fmtEta(s.eta)} · ${s.withinWindow ? 'בתוך חלון 5 דק׳' : 'מעל חלון 5 דק׳'}</div>
+      <div>${fmtDist(s.crow)} אווירי · ${fmtDist(s.routeGap)} לאורך הציר · ${fmtEta(s.eta)} · ${s.withinWindow ? 'בתוך חלון 7 דק׳' : 'מעל חלון 7 דק׳'}</div>
       <div class="tiny">${s.notes || ''}</div>
       <div class="tiny">${s.sourceUrl ? `<a href="${s.sourceUrl}" target="_blank" rel="noopener">מקור</a> · ` : ''}${s.sourceLabel || ''}</div>
     </div>`).join('') || '<div class="item">אין יעדים טעונים</div>';
@@ -218,12 +218,12 @@ function updateNearest(pos,alertActive=false){
   if(currentNearest) choiceLine=L.polyline([[lat,lng],[currentNearest.lat,currentNearest.lng]],{color:'#ef4444',weight:4,opacity:.85}).addTo(map);
   const navEnabled = !!(currentNearest && currentNearest.withinWindow);
   $('navBtn').disabled=!navEnabled; $('wazeBtn').disabled=!navEnabled;
-  $('navBtn').textContent = navEnabled ? 'פתח Google Maps' : 'אין יעד בתוך 5 דק׳';
-  $('wazeBtn').textContent = navEnabled ? 'פתח Waze' : 'אין יעד בתוך 5 דק׳';
+  $('navBtn').textContent = navEnabled ? 'פתח Google Maps' : 'אין יעד בתוך 7 דק׳';
+  $('wazeBtn').textContent = navEnabled ? 'פתח Waze' : 'אין יעד בתוך 7 דק׳';
   updateInstruction(alertActive);
   $('windowHint').textContent = currentNearest && !currentNearest.withinWindow
-    ? 'אין כרגע יעד מוערך בתוך 5 דקות. במקרה של התראה: עצור מיד במחסה קרוב. ניווט ליעד רחוק נחסם במכוון.'
-    : 'יעד עד 5 דקות יקבל עדיפות. אם אין כזה, תופיע המלצה לעצור במחסה קרוב.';
+    ? 'אין כרגע יעד מוערך בתוך 7 דקות. במקרה של התראה: עצור מיד במחסה קרוב. ניווט ליעד רחוק נחסם במכוון.'
+    : 'יעד עד 7 דקות יקבל עדיפות. אם אין כזה, תופיע המלצה לעצור במחסה קרוב.';
 }
 async function loadStops(){
   const candidates=[
@@ -286,7 +286,7 @@ async function pollAlerts(){
     const data=await res.json(); const active = manualAlert || !!data.active; const title = active ? (manualAlert ? 'התראה ידנית פעילה' : (data.title || 'התראה פעילה')) : (data.title || 'אין התראה');
     setBadge(active ? 'danger' : 'ok', title);
     if(currentPosition) updateNearest(currentPosition, active);
-    if(active && currentNearest && CONFIG.speakOnAlert){ const key=`${currentNearest.id}|${title}|${currentNearest.withinWindow}`; if(lastSpoken!==key){ speak(currentNearest.withinWindow ? `התראה. סע עכשיו אל ${currentNearest.name}` : `התראה. אין יעד בתוך חמש דקות. עצור במחסה קרוב ובטוח ככל האפשר`); lastSpoken=key; } }
+    if(active && currentNearest && CONFIG.speakOnAlert){ const key=`${currentNearest.id}|${title}|${currentNearest.withinWindow}`; if(lastSpoken!==key){ speak(currentNearest.withinWindow ? `התראה. סע עכשיו אל ${currentNearest.name}` : `התראה. אין יעד בתוך שבע דקות. עצור במחסה קרוב ובטוח ככל האפשר`); lastSpoken=key; } }
     $('refreshText').textContent=`עודכן ${new Date().toLocaleTimeString('he-IL',{hour:'2-digit',minute:'2-digit',second:'2-digit'})}`;
   }catch(e){
     setBadge(manualAlert ? 'danger' : 'warn', manualAlert ? 'התראה ידנית פעילה' : 'מקור התראות לא מחובר');

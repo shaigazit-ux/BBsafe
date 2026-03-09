@@ -8,8 +8,8 @@ This build is meant to be hosted publicly and shared as a single link with a dri
 
 ## What V6 adds
 - Works for **both directions** on the same route logic.
-- Keeps the **5-minute ETA window** rule.
-- If the nearest target is **over 5 minutes**, the UI warns that the target is outside the likely window and recommends stopping at the nearest safe shelter.
+- Keeps the **7-minute ETA window** rule.
+- If the nearest target is **over 7 minutes**, the UI warns that the target is outside the likely window and recommends stopping at the nearest safe shelter.
 - Includes a **manual alert** button that triggers the exact same flow as an automatic alert.
 - Adds **shareable URL support**:
   - `?alert=1` starts with manual alert on.
