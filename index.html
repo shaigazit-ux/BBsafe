@@ -27,7 +27,7 @@
     .metric{background:rgba(255,255,255,.03);border-radius:14px;padding:10px;border:1px solid rgba(255,255,255,.05)}
     .k{font-size:11px;color:var(--muted);margin-bottom:4px}.v{font-size:16px;font-weight:900}
     .cta{display:grid;grid-template-columns:1fr 1fr;gap:8px}.btn{border:0;border-radius:14px;padding:14px 12px;font-size:15px;font-weight:900;cursor:pointer}
-    .btn.primary{background:var(--danger);color:white}.btn.secondary{background:var(--soft);color:white}.btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.12)} .btn:disabled{opacity:.5;cursor:not-allowed}
+    .btn.primary{background:var(--danger);color:white}.btn.secondary{background:var(--soft);color:white}.btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.12)}.btn.waze{background:#1d4ed8;color:white}.btn.manual-alert{padding:12px 18px;font-size:15px;border-radius:16px} .btn:disabled{opacity:.5;cursor:not-allowed}
     .progressBar{height:10px;border-radius:999px;background:#0b1220;overflow:hidden;border:1px solid rgba(255,255,255,.08)} .progressFill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),#60a5fa)}
     .list{display:grid;gap:8px}.item{padding:10px;border-radius:14px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05)} .item strong{display:block;margin-bottom:4px}
     .tag{display:inline-flex;padding:3px 7px;border-radius:999px;font-size:11px;font-weight:900;margin-inline-start:4px}
@@ -48,9 +48,8 @@
     </div>
 
     <div class="card hero stack">
-      <div class="row">
-        <div class="pill">לינק אחד לנהג בתחילת הנסיעה</div>
-        <button id="manualAlertBtn" class="btn ghost" style="padding:8px 10px;font-size:12px">התראה ידנית: כבוי</button>
+      <div class="row" style="justify-content:flex-end">
+        <button id="manualAlertBtn" class="btn ghost manual-alert">התראה ידנית: כבוי</button>
       </div>
       <div id="instructionText" class="instruction">האתר ממתין להרשאת מיקום. אם תוגדר התראה פעילה, ייבחר יעד מיגון וייפתח ניווט בלחיצה.</div>
       <div class="metrics">
@@ -61,8 +60,8 @@
         <div class="metric"><div class="k">סטטוס 7 דקות</div><div class="v" id="etaWindowStatus">—</div></div>
       </div>
       <div class="cta">
+        <button id="wazeBtn" class="btn waze" disabled>פתח Waze</button>
         <button id="navBtn" class="btn primary" disabled>פתח Google Maps</button>
-        <button id="wazeBtn" class="btn secondary" disabled>פתח Waze</button>
       </div>
       <div class="tiny" id="routeStatus">ממתין למיקום…</div>
       <div class="row"><div class="tiny">התקדמות על המסלול</div><div class="tiny" id="routeProgressText">—</div></div>
