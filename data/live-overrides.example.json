@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "manual-live-overrides",
-    "updatedAt": "2026-03-09T16:18:28+02:00",
-    "note": "Synced from data/stops.json (stable curated list)"
+    "updatedAt": "2026-03-09T16:33:07+02:00",
+    "note": "Synced from data/stops.json (stable curated list + Red Line entrances)"
   },
   "stops": [
     {
@@ -246,15 +246,15 @@
     },
     {
       "id": "ta-begin-130",
-      "name": "תחנת שאול המלך (כניסה C) – מנחם בגין 130, תל אביב",
-      "kind": "תחנה תת-קרקעית",
+      "name": "תחנת שאול המלך – כניסה C (שד׳ מנחם בגין 130, ת״א)",
+      "kind": "תחנת רכבת קלה תת-קרקעית",
       "lat": 32.0674923,
       "lng": 34.7854647,
-      "verified": false,
-      "confidence": "fallback",
-      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "verified": true,
+      "confidence": "verified",
+      "sourceLabel": "User-provided update (2026-03-09): Red Line stations designated as protected spaces under Home Front Command guidance",
       "sourceUrl": "",
-      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "notes": "Underground light-rail station entrance designated as protected space for emergencies.",
       "alertPlaces": [
         "תל אביב",
         "תל אביב - מרכז העיר",
@@ -264,15 +264,15 @@
     },
     {
       "id": "ta-begin-125",
-      "name": "תחנת שאול המלך (כניסה A) – מנחם בגין 125, תל אביב",
-      "kind": "תחנה תת-קרקעית",
+      "name": "תחנת שאול המלך – כניסה A (שד׳ מנחם בגין 125, ת״א)",
+      "kind": "תחנת רכבת קלה תת-קרקעית",
       "lat": 32.0730925,
       "lng": 34.7893649,
-      "verified": false,
-      "confidence": "fallback",
-      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "verified": true,
+      "confidence": "verified",
+      "sourceLabel": "User-provided update (2026-03-09): Red Line stations designated as protected spaces under Home Front Command guidance",
       "sourceUrl": "",
-      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "notes": "Underground light-rail station entrance designated as protected space for emergencies.",
       "alertPlaces": [
         "תל אביב",
         "תל אביב - מרכז העיר",
@@ -282,15 +282,15 @@
     },
     {
       "id": "ta-begin-144",
-      "name": "תחנת שאול המלך (כניסה B) – מנחם בגין 144, תל אביב",
-      "kind": "תחנה תת-קרקעית",
+      "name": "תחנת שאול המלך – כניסה B (שד׳ מנחם בגין 144, ת״א)",
+      "kind": "תחנת רכבת קלה תת-קרקעית",
       "lat": 32.077632,
       "lng": 34.793041,
-      "verified": false,
-      "confidence": "fallback",
-      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "verified": true,
+      "confidence": "verified",
+      "sourceLabel": "User-provided update (2026-03-09): Red Line stations designated as protected spaces under Home Front Command guidance",
       "sourceUrl": "",
-      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "notes": "Underground light-rail station entrance designated as protected space for emergencies.",
       "alertPlaces": [
         "תל אביב",
         "תל אביב - מרכז העיר",
@@ -1132,6 +1132,344 @@
         "יהוד מונוסון",
         "אור יהודה",
         "נתב\"ג"
+      ]
+    },
+    {
+      "id": "lr-red-allenby-a",
+      "name": "תחנת אלנבי – כניסה A (יהודה הלוי 47, ת״א)",
+      "kind": "תחנת רכבת קלה תת-קרקעית",
+      "lat": 32.0622368,
+      "lng": 34.7736653,
+      "verified": true,
+      "confidence": "verified",
+      "sourceLabel": "User-provided update (2026-03-09): Red Line stations designated as protected spaces under Home Front Command guidance",
+      "sourceUrl": "",
+      "notes": "Underground light-rail station entrance designated as protected space for emergencies.",
+      "alertPlaces": [
+        "תל אביב",
+        "תל אביב - מרכז העיר",
+        "יפו"
+      ]
+    },
+    {
+      "id": "lr-red-allenby-b",
+      "name": "תחנת אלנבי – כניסה B (מקווה ישראל 10, ת״א)",
+      "kind": "תחנת רכבת קלה תת-קרקעית",
+      "lat": 32.0627244,
+      "lng": 34.7774956,
+      "verified": true,
+      "confidence": "verified",
+      "sourceLabel": "User-provided update (2026-03-09): Red Line stations designated as protected spaces under Home Front Command guidance",
+      "sourceUrl": "",
+      "notes": "Underground light-rail station entrance designated as protected space for emergencies.",
+      "alertPlaces": [
+        "תל אביב",
+        "תל אביב - מרכז העיר",
+        "יפו"
+      ]
+    },
+    {
+      "id": "lr-red-allenby-c",
+      "name": "תחנת אלנבי – כניסה C (מקווה ישראל 47, ת״א)",
+      "kind": "תחנת רכבת קלה תת-קרקעית",
+      "lat": 32.0627646,
+      "lng": 34.776807,
+      "verified": true,
+      "confidence": "verified",
+      "sourceLabel": "User-provided update (2026-03-09): Red Line stations designated as protected spaces under Home Front Command guidance",
+      "sourceUrl": "",
+      "notes": "Underground light-rail station entrance designated as protected space for emergencies.",
+      "alertPlaces": [
+        "תל אביב",
+        "תל אביב - מרכז העיר",
+        "יפו"
+      ]
+    },
+    {
+      "id": "lr-red-yehudit-b",
+      "name": "תחנת יהודית – כניסה B (דרך מנחם בגין 112, ת״א)",
+      "kind": "תחנת רכבת קלה תת-קרקעית",
+      "lat": 32.0734,
+      "lng": 34.7882,
+      "verified": true,
+      "confidence": "verified",
+      "sourceLabel": "User-provided update (2026-03-09): Red Line stations designated as protected spaces under Home Front Command guidance",
+      "sourceUrl": "",
+      "notes": "Underground light-rail station entrance designated as protected space for emergencies.",
+      "alertPlaces": [
+        "תל אביב",
+        "תל אביב - מרכז העיר",
+        "גבעתיים"
+      ]
+    },
+    {
+      "id": "lr-red-yehudit-d",
+      "name": "תחנת יהודית – כניסה D (אלברט מנדלר 38, ת״א)",
+      "kind": "תחנת רכבת קלה תת-קרקעית",
+      "lat": 32.0724411,
+      "lng": 34.7870991,
+      "verified": true,
+      "confidence": "verified",
+      "sourceLabel": "User-provided update (2026-03-09): Red Line stations designated as protected spaces under Home Front Command guidance",
+      "sourceUrl": "",
+      "notes": "Underground light-rail station entrance designated as protected space for emergencies.",
+      "alertPlaces": [
+        "תל אביב",
+        "תל אביב - מרכז העיר",
+        "גבעתיים"
+      ]
+    },
+    {
+      "id": "lr-red-arlozorov-a",
+      "name": "תחנת ארלוזורוב – כניסה A (על פרשת דרכים 1, ת״א)",
+      "kind": "תחנת רכבת קלה תת-קרקעית",
+      "lat": 32.082926,
+      "lng": 34.794942,
+      "verified": true,
+      "confidence": "verified",
+      "sourceLabel": "User-provided update (2026-03-09): Red Line stations designated as protected spaces under Home Front Command guidance",
+      "sourceUrl": "",
+      "notes": "Underground light-rail station entrance designated as protected space for emergencies.",
+      "alertPlaces": [
+        "תל אביב",
+        "רמת גן",
+        "בני ברק"
+      ]
+    },
+    {
+      "id": "lr-red-arlozorov-b",
+      "name": "תחנת ארלוזורוב – כניסה B (דרך מנחם בגין 160, ת״א)",
+      "kind": "תחנת רכבת קלה תת-קרקעית",
+      "lat": 32.082926,
+      "lng": 34.794942,
+      "verified": true,
+      "confidence": "verified",
+      "sourceLabel": "User-provided update (2026-03-09): Red Line stations designated as protected spaces under Home Front Command guidance",
+      "sourceUrl": "",
+      "notes": "Underground light-rail station entrance designated as protected space for emergencies.",
+      "alertPlaces": [
+        "תל אביב",
+        "רמת גן",
+        "בני ברק"
+      ]
+    },
+    {
+      "id": "lr-red-abba-hillel-b",
+      "name": "תחנת אבא הלל – כניסה B (ז׳בוטינסקי 2, ר״ג)",
+      "kind": "תחנת רכבת קלה תת-קרקעית",
+      "lat": 32.0826788,
+      "lng": 34.8021738,
+      "verified": true,
+      "confidence": "verified",
+      "sourceLabel": "User-provided update (2026-03-09): Red Line stations designated as protected spaces under Home Front Command guidance",
+      "sourceUrl": "",
+      "notes": "Underground light-rail station entrance designated as protected space for emergencies.",
+      "alertPlaces": [
+        "רמת גן",
+        "בני ברק",
+        "תל אביב"
+      ]
+    },
+    {
+      "id": "lr-red-abba-hillel-c",
+      "name": "תחנת אבא הלל – כניסה C (ז׳בוטינסקי 5, ר״ג)",
+      "kind": "תחנת רכבת קלה תת-קרקעית",
+      "lat": 32.0742201,
+      "lng": 34.8484193,
+      "verified": true,
+      "confidence": "verified",
+      "sourceLabel": "User-provided update (2026-03-09): Red Line stations designated as protected spaces under Home Front Command guidance",
+      "sourceUrl": "",
+      "notes": "Underground light-rail station entrance designated as protected space for emergencies.",
+      "alertPlaces": [
+        "רמת גן",
+        "בני ברק",
+        "תל אביב"
+      ]
+    },
+    {
+      "id": "lr-red-bialik-a",
+      "name": "תחנת ביאליק – כניסה A (ז׳בוטינסקי 85, ר״ג)",
+      "kind": "תחנת רכבת קלה תת-קרקעית",
+      "lat": 32.0742201,
+      "lng": 34.8484193,
+      "verified": true,
+      "confidence": "verified",
+      "sourceLabel": "User-provided update (2026-03-09): Red Line stations designated as protected spaces under Home Front Command guidance",
+      "sourceUrl": "",
+      "notes": "Underground light-rail station entrance designated as protected space for emergencies.",
+      "alertPlaces": [
+        "רמת גן",
+        "בני ברק",
+        "תל אביב"
+      ]
+    },
+    {
+      "id": "lr-red-bialik-b",
+      "name": "תחנת ביאליק – כניסה B (ז׳בוטינסקי 68, ר״ג)",
+      "kind": "תחנת רכבת קלה תת-קרקעית",
+      "lat": 32.0742201,
+      "lng": 34.8484193,
+      "verified": true,
+      "confidence": "verified",
+      "sourceLabel": "User-provided update (2026-03-09): Red Line stations designated as protected spaces under Home Front Command guidance",
+      "sourceUrl": "",
+      "notes": "Underground light-rail station entrance designated as protected space for emergencies.",
+      "alertPlaces": [
+        "רמת גן",
+        "בני ברק",
+        "תל אביב"
+      ]
+    },
+    {
+      "id": "lr-red-bialik-c",
+      "name": "תחנת ביאליק – כניסה C (ז׳בוטינסקי 75, ר״ג)",
+      "kind": "תחנת רכבת קלה תת-קרקעית",
+      "lat": 32.0742201,
+      "lng": 34.8484193,
+      "verified": true,
+      "confidence": "verified",
+      "sourceLabel": "User-provided update (2026-03-09): Red Line stations designated as protected spaces under Home Front Command guidance",
+      "sourceUrl": "",
+      "notes": "Underground light-rail station entrance designated as protected space for emergencies.",
+      "alertPlaces": [
+        "רמת גן",
+        "בני ברק",
+        "תל אביב"
+      ]
+    },
+    {
+      "id": "lr-red-ben-gurion-a",
+      "name": "תחנת בן גוריון – כניסה A (ז׳בוטינסקי 12, בני ברק)",
+      "kind": "תחנת רכבת קלה תת-קרקעית",
+      "lat": 32.092807,
+      "lng": 34.837825,
+      "verified": true,
+      "confidence": "verified",
+      "sourceLabel": "User-provided update (2026-03-09): Red Line stations designated as protected spaces under Home Front Command guidance",
+      "sourceUrl": "",
+      "notes": "Underground light-rail station entrance designated as protected space for emergencies.",
+      "alertPlaces": [
+        "בני ברק",
+        "רמת גן",
+        "פתח תקווה"
+      ]
+    },
+    {
+      "id": "lr-red-ben-gurion-b",
+      "name": "תחנת בן גוריון – כניסה B (ז׳בוטינסקי 3, בני ברק)",
+      "kind": "תחנת רכבת קלה תת-קרקעית",
+      "lat": 32.092807,
+      "lng": 34.837825,
+      "verified": true,
+      "confidence": "verified",
+      "sourceLabel": "User-provided update (2026-03-09): Red Line stations designated as protected spaces under Home Front Command guidance",
+      "sourceUrl": "",
+      "notes": "Underground light-rail station entrance designated as protected space for emergencies.",
+      "alertPlaces": [
+        "בני ברק",
+        "רמת גן",
+        "פתח תקווה"
+      ]
+    },
+    {
+      "id": "lr-red-aharonovitch-a",
+      "name": "תחנת אהרונוביץ׳ – כניסה A (ז׳בוטינסקי 166, בני ברק)",
+      "kind": "תחנת רכבת קלה תת-קרקעית",
+      "lat": 32.092807,
+      "lng": 34.837825,
+      "verified": true,
+      "confidence": "verified",
+      "sourceLabel": "User-provided update (2026-03-09): Red Line stations designated as protected spaces under Home Front Command guidance",
+      "sourceUrl": "",
+      "notes": "Underground light-rail station entrance designated as protected space for emergencies.",
+      "alertPlaces": [
+        "בני ברק",
+        "פתח תקווה",
+        "רמת גן"
+      ]
+    },
+    {
+      "id": "lr-red-aharonovitch-b",
+      "name": "תחנת אהרונוביץ׳ – כניסה B (ז׳בוטינסקי 117, בני ברק)",
+      "kind": "תחנת רכבת קלה תת-קרקעית",
+      "lat": 32.092807,
+      "lng": 34.837825,
+      "verified": true,
+      "confidence": "verified",
+      "sourceLabel": "User-provided update (2026-03-09): Red Line stations designated as protected spaces under Home Front Command guidance",
+      "sourceUrl": "",
+      "notes": "Underground light-rail station entrance designated as protected space for emergencies.",
+      "alertPlaces": [
+        "בני ברק",
+        "פתח תקווה",
+        "רמת גן"
+      ]
+    },
+    {
+      "id": "lr-red-em-hamoshavot-a",
+      "name": "תחנת אם המושבות – כניסה A",
+      "kind": "תחנת רכבת קלה תת-קרקעית",
+      "lat": 32.1062501,
+      "lng": 34.8628355,
+      "verified": true,
+      "confidence": "verified",
+      "sourceLabel": "User-provided update (2026-03-09): Red Line stations designated as protected spaces under Home Front Command guidance",
+      "sourceUrl": "",
+      "notes": "Underground light-rail station entrance designated as protected space for emergencies.",
+      "alertPlaces": [
+        "פתח תקווה",
+        "בני ברק"
+      ]
+    },
+    {
+      "id": "lr-red-em-hamoshavot-b",
+      "name": "תחנת אם המושבות – כניסה B (גשר אם המושבות)",
+      "kind": "תחנת רכבת קלה תת-קרקעית",
+      "lat": 32.0988788,
+      "lng": 34.846268,
+      "verified": true,
+      "confidence": "verified",
+      "sourceLabel": "User-provided update (2026-03-09): Red Line stations designated as protected spaces under Home Front Command guidance",
+      "sourceUrl": "",
+      "notes": "Underground light-rail station entrance designated as protected space for emergencies.",
+      "alertPlaces": [
+        "פתח תקווה",
+        "בני ברק"
+      ]
+    },
+    {
+      "id": "lr-red-yehudit-a",
+      "name": "תחנת יהודית – כניסה A (בגין פינת הארבעה, ת״א)",
+      "kind": "תחנת רכבת קלה תת-קרקעית",
+      "lat": 32.0728,
+      "lng": 34.7874,
+      "verified": true,
+      "confidence": "verified",
+      "sourceLabel": "User-provided update (2026-03-09): Red Line stations designated as protected spaces under Home Front Command guidance",
+      "sourceUrl": "",
+      "notes": "Underground light-rail station entrance designated as protected space for emergencies. Coordinate set to station-area approximation; refine with exact entrance pin if available.",
+      "alertPlaces": [
+        "תל אביב",
+        "תל אביב - מרכז העיר",
+        "גבעתיים"
+      ]
+    },
+    {
+      "id": "lr-red-yehudit-c",
+      "name": "תחנת יהודית – כניסה C (דרך מנחם בגין 98, ת״א)",
+      "kind": "תחנת רכבת קלה תת-קרקעית",
+      "lat": 32.0721,
+      "lng": 34.7868,
+      "verified": true,
+      "confidence": "verified",
+      "sourceLabel": "User-provided update (2026-03-09): Red Line stations designated as protected spaces under Home Front Command guidance",
+      "sourceUrl": "",
+      "notes": "Underground light-rail station entrance designated as protected space for emergencies. Coordinate set to station-area approximation; refine with exact entrance pin if available.",
+      "alertPlaces": [
+        "תל אביב",
+        "תל אביב - מרכז העיר",
+        "גבעתיים"
       ]
     }
   ]
