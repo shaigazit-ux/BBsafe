@@ -34,13 +34,11 @@ export async function onRequestGet(context) {
     try {
       liveUrlUsed = withCacheBust(liveUrl);
       let liveRes = await fetch(liveUrlUsed, {
-        cache: 'no-store',
         cf: { cacheTtl: 0, cacheEverything: false }
       });
       // Fallback: some upstreams may reject extra query params used for cache busting.
       if (!liveRes.ok) {
         liveRes = await fetch(liveUrl, {
-          cache: 'no-store',
           cf: { cacheTtl: 0, cacheEverything: false }
         });
         liveUrlUsed = liveUrl;
