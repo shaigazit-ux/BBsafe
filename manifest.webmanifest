@@ -1,0 +1,10 @@
+{
+  "name": "נהג מוגן",
+  "short_name": "נהג מוגן",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#08111f",
+  "theme_color": "#08111f",
+  "lang": "he",
+  "dir": "rtl"
+}
