@@ -66,11 +66,17 @@ Then open `http://localhost:8080`
 
 ## Trip planning flow
 - Open `/planner.html` from the main app link (`תכנון נסיעה`) or directly.
-- Add route stations by clicking the map (or add current location).
+- Add route stations by typing an address (autocomplete) or by clicking the map.
+- You can also add the current GPS location as a station.
 - Click **בדוק כיסוי 7 דקות** to verify shelter coverage along the full route.
 - Export is enabled only after approval:
   - Google Maps export includes origin, destination, and waypoints.
   - Waze export opens navigation to the final station (Waze web link limitation).
+
+## Data updates (March 2026)
+- Expanded shelter coverage dataset with additional points from Kfar Saba/Hasharon through Tel Aviv and toward Jerusalem.
+- Added source URLs for city pages where provided (Tel Aviv, Jerusalem, Ramla, ModiinOnline context, Givat Ze'ev list).
+- `data/live-overrides.example.json` is synchronized with `data/stops.json` for LIVE_STOPS_URL usage.
 
 ## Alerts API behavior
 - Frontend sends current GPS (`lat/lng`) to `/api/alerts`.

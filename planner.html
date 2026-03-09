@@ -37,6 +37,12 @@
     .item{padding:10px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)}
     .itemTop{display:flex;justify-content:space-between;align-items:center;gap:8px}
     .itemButtons{display:flex;gap:6px}
+    .searchGrid{display:grid;grid-template-columns:1fr auto;gap:8px}
+    .searchInput{width:100%;background:#0b1220;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:10px 12px;color:var(--text);font-size:14px}
+    .searchInput::placeholder{color:#94a3b8}
+    .suggestions{display:grid;gap:6px;margin-top:8px;max-height:180px;overflow:auto}
+    .suggestionBtn{width:100%;text-align:right;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:8px 10px;color:var(--text);cursor:pointer}
+    .suggestionBtn:hover{background:rgba(56,189,248,.12)}
     .hint{color:#7dd3fc}
     .station-tip{background:#1e293b;color:#f8fafc;border:0;border-radius:999px;padding:2px 6px}
     a,a:visited{color:#93c5fd}
@@ -56,6 +62,11 @@
 
     <div class="card">
       <div class="tiny">הנחיה: לחיצה על המפה מוסיפה תחנה למסלול לפי הסדר. גרירה של סמן משנה מיקום תחנה.</div>
+      <div class="searchGrid" style="margin-top:8px">
+        <input id="addressInput" class="searchInput" type="text" placeholder="הקלידו כתובת (לדוגמה: יהודה הלוי 47 תל אביב)" autocomplete="off" />
+        <button id="addAddressBtn" class="btn secondary" type="button">הוסף כתובת</button>
+      </div>
+      <div id="addressSuggestions" class="suggestions"></div>
       <div class="actions" style="margin-top:8px">
         <button id="addCurrentBtn" class="btn secondary" type="button">הוסף מיקום נוכחי</button>
         <button id="validateBtn" class="btn primary" type="button">בדוק כיסוי 7 דקות</button>
@@ -108,6 +119,9 @@ let stationMarkers = [];
 let plannedStops = [];
 let shelters = [];
 let lastValidation = null;
+let addressResults = [];
+let searchAbortController = null;
+let searchTimer = null;
 
 function parseJsonFromText(text){
   const clean = String(text || '').replace(/^\uFEFF/, '').replace(/\u0000/g, '').trim();
@@ -176,10 +190,81 @@ function renderShelters(){
   shelterLayer.addTo(map);
 }
 
-function addStation(lat, lng){
-  plannedStops.push({id: `${Date.now()}-${Math.random().toString(16).slice(2,8)}`, lat, lng});
+function addStation(lat, lng, label=''){
+  plannedStops.push({id: `${Date.now()}-${Math.random().toString(16).slice(2,8)}`, lat, lng, label});
   renderPlannedStops();
   resetValidation();
+}
+
+function clearAddressSuggestions(){
+  addressResults = [];
+  $('addressSuggestions').innerHTML = '';
+}
+
+function renderAddressSuggestions(items){
+  addressResults = items;
+  $('addressSuggestions').innerHTML = items.map((r, i) => `
+    <button class="suggestionBtn" data-index="${i}" type="button">${r.display_name}</button>
+  `).join('');
+}
+
+async function queryAddressSuggestions(query){
+  const clean = String(query || '').trim();
+  if(clean.length < 2){
+    clearAddressSuggestions();
+    return [];
+  }
+  if(searchAbortController) searchAbortController.abort();
+  searchAbortController = new AbortController();
+  const url = new URL('https://nominatim.openstreetmap.org/search');
+  url.searchParams.set('format', 'jsonv2');
+  url.searchParams.set('countrycodes', 'il');
+  url.searchParams.set('addressdetails', '1');
+  url.searchParams.set('limit', '6');
+  url.searchParams.set('q', clean);
+  const res = await fetch(url.toString(), {
+    signal: searchAbortController.signal,
+    headers: { 'Accept-Language': 'he,en' }
+  });
+  if(!res.ok) throw new Error(`address search failed (${res.status})`);
+  const rows = await res.json();
+  const items = rows.map((r) => ({
+    display_name: r.display_name,
+    lat: Number(r.lat),
+    lon: Number(r.lon)
+  })).filter((r) => Number.isFinite(r.lat) && Number.isFinite(r.lon));
+  renderAddressSuggestions(items);
+  return items;
+}
+
+function chooseAddressResult(item){
+  if(!item) return;
+  addStation(item.lat, item.lon, item.display_name);
+  map.setView([item.lat, item.lon], 15);
+  $('addressInput').value = '';
+  clearAddressSuggestions();
+  $('dataStatus').textContent = 'הכתובת נוספה למסלול.';
+}
+
+async function addAddressFromInput(){
+  const query = $('addressInput').value.trim();
+  if(!query){
+    $('dataStatus').textContent = 'הקלידו כתובת לפני הוספה.';
+    return;
+  }
+  try{
+    $('dataStatus').textContent = 'מחפש כתובת…';
+    let items = addressResults;
+    if(!items.length) items = await queryAddressSuggestions(query);
+    if(!items.length){
+      $('dataStatus').textContent = 'לא נמצאה כתובת תואמת. נסו ניסוח נוסף.';
+      return;
+    }
+    chooseAddressResult(items[0]);
+  }catch(err){
+    if(err.name === 'AbortError') return;
+    $('dataStatus').textContent = 'שגיאה בחיפוש כתובת. נסו שוב.';
+  }
 }
 
 function moveStop(index, direction){
@@ -218,6 +303,7 @@ function renderPlannedStops(){
       renderPlannedStops();
       resetValidation();
     });
+    marker.bindPopup(s.label || pointStr(s));
     stationMarkers.push(marker);
   });
 
@@ -244,7 +330,8 @@ function renderPlannedStops(){
           <button class="btn ghost small" data-action="remove" data-index="${i}" type="button">הסר</button>
         </div>
       </div>
-      <div class="tiny">${pointStr(s)}</div>
+      <div class="tiny">${s.label || pointStr(s)}</div>
+      ${s.label ? `<div class="tiny">${pointStr(s)}</div>` : ''}
     </div>
   `).join('') || '<div class="item tiny">אין תחנות עדיין. לחצו על המפה כדי להוסיף.</div>';
 }
@@ -427,6 +514,39 @@ function addCurrentLocation(){
 }
 
 function bindEvents(){
+  $('addressInput').addEventListener('input', () => {
+    if(searchTimer) clearTimeout(searchTimer);
+    searchTimer = setTimeout(async () => {
+      const query = $('addressInput').value.trim();
+      if(query.length < 2){
+        clearAddressSuggestions();
+        return;
+      }
+      try{
+        $('dataStatus').textContent = 'מחפש כתובת…';
+        const items = await queryAddressSuggestions(query);
+        $('dataStatus').textContent = items.length
+          ? `נמצאו ${items.length} תוצאות. בחרו כתובת או לחצו "הוסף כתובת".`
+          : 'לא נמצאו תוצאות. נסו לכתוב עיר + רחוב + מספר.';
+      }catch(err){
+        if(err.name === 'AbortError') return;
+        $('dataStatus').textContent = 'שגיאה בחיפוש כתובת. נסו שוב.';
+      }
+    }, 300);
+  });
+  $('addressInput').addEventListener('keydown', (e) => {
+    if(e.key === 'Enter'){
+      e.preventDefault();
+      addAddressFromInput();
+    }
+  });
+  $('addressSuggestions').addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-index]');
+    if(!btn) return;
+    const idx = Number(btn.dataset.index);
+    chooseAddressResult(addressResults[idx]);
+  });
+  $('addAddressBtn').addEventListener('click', addAddressFromInput);
   $('stationList').addEventListener('click', (e) => {
     const btn = e.target.closest('button[data-action]');
     if(!btn) return;

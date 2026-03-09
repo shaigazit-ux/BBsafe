@@ -101,8 +101,8 @@
     "lng": 35.00993,
     "verified": true,
     "confidence": "verified",
-    "sourceLabel": "עיריית מודיעין – חניון יעקבי אושר ע״י פיקוד העורף כמרכז מחסה המוני",
-    "sourceUrl": "https://www.modiin.muni.il/modiinwebsite/ChannelArticleNews.aspx?PageID=2_295&id=12116",
+    "sourceLabel": "מודיעין אונליין – חניונים שאושרו ע\"י פיקוד העורף",
+    "sourceUrl": "https://modiinonline.co.il/news/3772/",
     "notes": "קומה מינוס 3.",
     "alertPlaces": [
       "מודיעין",
@@ -119,8 +119,8 @@
     "lng": 35.00772,
     "verified": true,
     "confidence": "verified",
-    "sourceLabel": "עיריית מודיעין – חניון השדרה אושר ע״י פיקוד העורף כמרכז מחסה המוני",
-    "sourceUrl": "https://www.modiin.muni.il/modiinwebsite/ChannelArticleNews.aspx?PageID=2_295&id=12116",
+    "sourceLabel": "מודיעין אונליין – חניונים שאושרו ע\"י פיקוד העורף",
+    "sourceUrl": "https://modiinonline.co.il/news/3772/",
     "notes": "קומות מינוס 4 ו-5.",
     "alertPlaces": [
       "מודיעין",
@@ -535,10 +535,10 @@
     "kind": "מקלט ציבורי",
     "lat": 31.9214221,
     "lng": 34.8714865,
-    "verified": false,
-    "confidence": "fallback",
-    "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
-    "sourceUrl": "",
+    "verified": true,
+    "confidence": "verified",
+    "sourceLabel": "עיריית רמלה – רשימת מקלטים ציבוריים ומיגוניות",
+    "sourceUrl": "https://ramle.org.il/%D7%A8%D7%A9%D7%99%D7%9E%D7%AA-%D7%94%D7%9E%D7%A7%D7%9C%D7%98%D7%99%D7%9D-%D7%94%D7%A6%D7%99%D7%91%D7%95%D7%A8%D7%99%D7%99%D7%9D/",
     "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
     "alertPlaces": [
       "רמלה",
@@ -552,10 +552,10 @@
     "kind": "מקלט ציבורי",
     "lat": 31.9208936,
     "lng": 34.8696362,
-    "verified": false,
-    "confidence": "fallback",
-    "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
-    "sourceUrl": "",
+    "verified": true,
+    "confidence": "verified",
+    "sourceLabel": "עיריית רמלה – רשימת מקלטים ציבוריים ומיגוניות",
+    "sourceUrl": "https://ramle.org.il/%D7%A8%D7%A9%D7%99%D7%9E%D7%AA-%D7%94%D7%9E%D7%A7%D7%9C%D7%98%D7%99%D7%9D-%D7%94%D7%A6%D7%99%D7%91%D7%95%D7%A8%D7%99%D7%99%D7%9D/",
     "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
     "alertPlaces": [
       "רמלה",
@@ -569,10 +569,10 @@
     "kind": "מקלט ציבורי",
     "lat": 31.9205109,
     "lng": 34.8715144,
-    "verified": false,
-    "confidence": "fallback",
-    "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
-    "sourceUrl": "",
+    "verified": true,
+    "confidence": "verified",
+    "sourceLabel": "עיריית רמלה – רשימת מקלטים ציבוריים ומיגוניות",
+    "sourceUrl": "https://ramle.org.il/%D7%A8%D7%A9%D7%99%D7%9E%D7%AA-%D7%94%D7%9E%D7%A7%D7%9C%D7%98%D7%99%D7%9D-%D7%94%D7%A6%D7%99%D7%91%D7%95%D7%A8%D7%99%D7%99%D7%9D/",
     "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
     "alertPlaces": [
       "רמלה",
@@ -586,10 +586,10 @@
     "kind": "מקלט ציבורי",
     "lat": 31.9205109,
     "lng": 34.8715144,
-    "verified": false,
-    "confidence": "fallback",
-    "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
-    "sourceUrl": "",
+    "verified": true,
+    "confidence": "verified",
+    "sourceLabel": "עיריית רמלה – רשימת מקלטים ציבוריים ומיגוניות",
+    "sourceUrl": "https://ramle.org.il/%D7%A8%D7%A9%D7%99%D7%9E%D7%AA-%D7%94%D7%9E%D7%A7%D7%9C%D7%98%D7%99%D7%9D-%D7%94%D7%A6%D7%99%D7%91%D7%95%D7%A8%D7%99%D7%99%D7%9D/",
     "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
     "alertPlaces": [
       "רמלה",
@@ -603,10 +603,10 @@
     "kind": "מקלט ציבורי",
     "lat": 31.9313485,
     "lng": 34.8659284,
-    "verified": false,
-    "confidence": "fallback",
-    "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
-    "sourceUrl": "",
+    "verified": true,
+    "confidence": "verified",
+    "sourceLabel": "עיריית רמלה – רשימת מקלטים ציבוריים ומיגוניות",
+    "sourceUrl": "https://ramle.org.il/%D7%A8%D7%A9%D7%99%D7%9E%D7%AA-%D7%94%D7%9E%D7%A7%D7%9C%D7%98%D7%99%D7%9D-%D7%94%D7%A6%D7%99%D7%91%D7%95%D7%A8%D7%99%D7%99%D7%9D/",
     "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
     "alertPlaces": [
       "רמלה",
@@ -620,10 +620,10 @@
     "kind": "מקלט ציבורי",
     "lat": 31.9324826,
     "lng": 34.8658275,
-    "verified": false,
-    "confidence": "fallback",
-    "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
-    "sourceUrl": "",
+    "verified": true,
+    "confidence": "verified",
+    "sourceLabel": "עיריית רמלה – רשימת מקלטים ציבוריים ומיגוניות",
+    "sourceUrl": "https://ramle.org.il/%D7%A8%D7%A9%D7%99%D7%9E%D7%AA-%D7%94%D7%9E%D7%A7%D7%9C%D7%98%D7%99%D7%9D-%D7%94%D7%A6%D7%99%D7%91%D7%95%D7%A8%D7%99%D7%99%D7%9D/",
     "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
     "alertPlaces": [
       "רמלה",
@@ -637,10 +637,10 @@
     "kind": "מקלט ציבורי",
     "lat": 31.9360438,
     "lng": 34.8649101,
-    "verified": false,
-    "confidence": "fallback",
-    "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
-    "sourceUrl": "",
+    "verified": true,
+    "confidence": "verified",
+    "sourceLabel": "עיריית רמלה – רשימת מקלטים ציבוריים ומיגוניות",
+    "sourceUrl": "https://ramle.org.il/%D7%A8%D7%A9%D7%99%D7%9E%D7%AA-%D7%94%D7%9E%D7%A7%D7%9C%D7%98%D7%99%D7%9D-%D7%94%D7%A6%D7%99%D7%91%D7%95%D7%A8%D7%99%D7%99%D7%9D/",
     "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
     "alertPlaces": [
       "רמלה",
@@ -654,10 +654,10 @@
     "kind": "מקלט ציבורי",
     "lat": 31.9386325,
     "lng": 34.8648823,
-    "verified": false,
-    "confidence": "fallback",
-    "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
-    "sourceUrl": "",
+    "verified": true,
+    "confidence": "verified",
+    "sourceLabel": "עיריית רמלה – רשימת מקלטים ציבוריים ומיגוניות",
+    "sourceUrl": "https://ramle.org.il/%D7%A8%D7%A9%D7%99%D7%9E%D7%AA-%D7%94%D7%9E%D7%A7%D7%9C%D7%98%D7%99%D7%9D-%D7%94%D7%A6%D7%99%D7%91%D7%95%D7%A8%D7%99%D7%99%D7%9D/",
     "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
     "alertPlaces": [
       "רמלה",
@@ -671,10 +671,10 @@
     "kind": "מקלט ציבורי",
     "lat": 31.932494,
     "lng": 34.8571149,
-    "verified": false,
-    "confidence": "fallback",
-    "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
-    "sourceUrl": "",
+    "verified": true,
+    "confidence": "verified",
+    "sourceLabel": "עיריית רמלה – רשימת מקלטים ציבוריים ומיגוניות",
+    "sourceUrl": "https://ramle.org.il/%D7%A8%D7%A9%D7%99%D7%9E%D7%AA-%D7%94%D7%9E%D7%A7%D7%9C%D7%98%D7%99%D7%9D-%D7%94%D7%A6%D7%99%D7%91%D7%95%D7%A8%D7%99%D7%99%D7%9D/",
     "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
     "alertPlaces": [
       "רמלה",
@@ -688,10 +688,10 @@
     "kind": "מקלט ציבורי",
     "lat": 31.9313748,
     "lng": 34.8558524,
-    "verified": false,
-    "confidence": "fallback",
-    "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
-    "sourceUrl": "",
+    "verified": true,
+    "confidence": "verified",
+    "sourceLabel": "עיריית רמלה – רשימת מקלטים ציבוריים ומיגוניות",
+    "sourceUrl": "https://ramle.org.il/%D7%A8%D7%A9%D7%99%D7%9E%D7%AA-%D7%94%D7%9E%D7%A7%D7%9C%D7%98%D7%99%D7%9D-%D7%94%D7%A6%D7%99%D7%91%D7%95%D7%A8%D7%99%D7%99%D7%9D/",
     "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
     "alertPlaces": [
       "רמלה",
@@ -705,10 +705,10 @@
     "kind": "מקלט ציבורי",
     "lat": 31.9359075,
     "lng": 34.8565022,
-    "verified": false,
-    "confidence": "fallback",
-    "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
-    "sourceUrl": "",
+    "verified": true,
+    "confidence": "verified",
+    "sourceLabel": "עיריית רמלה – רשימת מקלטים ציבוריים ומיגוניות",
+    "sourceUrl": "https://ramle.org.il/%D7%A8%D7%A9%D7%99%D7%9E%D7%AA-%D7%94%D7%9E%D7%A7%D7%9C%D7%98%D7%99%D7%9D-%D7%94%D7%A6%D7%99%D7%91%D7%95%D7%A8%D7%99%D7%99%D7%9D/",
     "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
     "alertPlaces": [
       "רמלה",
@@ -722,10 +722,10 @@
     "kind": "מקלט ציבורי",
     "lat": 31.9438814,
     "lng": 34.877558,
-    "verified": false,
-    "confidence": "fallback",
-    "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
-    "sourceUrl": "",
+    "verified": true,
+    "confidence": "verified",
+    "sourceLabel": "עיריית רמלה – רשימת מקלטים ציבוריים ומיגוניות",
+    "sourceUrl": "https://ramle.org.il/%D7%A8%D7%A9%D7%99%D7%9E%D7%AA-%D7%94%D7%9E%D7%A7%D7%9C%D7%98%D7%99%D7%9D-%D7%94%D7%A6%D7%99%D7%91%D7%95%D7%A8%D7%99%D7%99%D7%9D/",
     "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
     "alertPlaces": [
       "רמלה",
@@ -792,8 +792,8 @@
     "lng": 35.0079612,
     "verified": false,
     "confidence": "fallback",
-    "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
-    "sourceUrl": "",
+    "sourceLabel": "מודיעין אונליין – חניונים שאושרו ע\"י פיקוד העורף",
+    "sourceUrl": "https://modiinonline.co.il/news/3772/",
     "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
     "alertPlaces": [
       "מודיעין",
@@ -904,10 +904,10 @@
     "kind": "מקלט ציבורי",
     "lat": 31.776293,
     "lng": 35.1920992,
-    "verified": false,
-    "confidence": "fallback",
-    "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
-    "sourceUrl": "",
+    "verified": true,
+    "confidence": "verified",
+    "sourceLabel": "עיריית ירושלים – רשימת מרחבים מוגנים",
+    "sourceUrl": "https://www.jerusalem.muni.il/he/residents/security/spaces/list/",
     "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
     "alertPlaces": [
       "ירושלים",
@@ -921,10 +921,10 @@
     "kind": "מקלט ציבורי",
     "lat": 31.7774399,
     "lng": 35.1922188,
-    "verified": false,
-    "confidence": "fallback",
-    "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
-    "sourceUrl": "",
+    "verified": true,
+    "confidence": "verified",
+    "sourceLabel": "עיריית ירושלים – רשימת מרחבים מוגנים",
+    "sourceUrl": "https://www.jerusalem.muni.il/he/residents/security/spaces/list/",
     "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
     "alertPlaces": [
       "ירושלים",
@@ -938,10 +938,10 @@
     "kind": "מקלט ציבורי",
     "lat": 31.7659324,
     "lng": 35.1829147,
-    "verified": false,
-    "confidence": "fallback",
-    "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
-    "sourceUrl": "",
+    "verified": true,
+    "confidence": "verified",
+    "sourceLabel": "עיריית ירושלים – רשימת מרחבים מוגנים",
+    "sourceUrl": "https://www.jerusalem.muni.il/he/residents/security/spaces/list/",
     "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
     "alertPlaces": [
       "ירושלים",
@@ -954,10 +954,10 @@
     "kind": "מקלט ציבורי",
     "lat": 31.7691054,
     "lng": 35.1845934,
-    "verified": false,
-    "confidence": "fallback",
-    "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
-    "sourceUrl": "",
+    "verified": true,
+    "confidence": "verified",
+    "sourceLabel": "עיריית ירושלים – רשימת מרחבים מוגנים",
+    "sourceUrl": "https://www.jerusalem.muni.il/he/residents/security/spaces/list/",
     "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
     "alertPlaces": [
       "ירושלים",
@@ -970,10 +970,10 @@
     "kind": "מקלט ציבורי",
     "lat": 31.7862708,
     "lng": 35.1973185,
-    "verified": false,
-    "confidence": "fallback",
-    "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
-    "sourceUrl": "",
+    "verified": true,
+    "confidence": "verified",
+    "sourceLabel": "עיריית ירושלים – רשימת מרחבים מוגנים",
+    "sourceUrl": "https://www.jerusalem.muni.il/he/residents/security/spaces/list/",
     "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
     "alertPlaces": [
       "ירושלים",
@@ -986,10 +986,10 @@
     "kind": "מקלט ציבורי",
     "lat": 31.787345,
     "lng": 35.1962455,
-    "verified": false,
-    "confidence": "fallback",
-    "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
-    "sourceUrl": "",
+    "verified": true,
+    "confidence": "verified",
+    "sourceLabel": "עיריית ירושלים – רשימת מרחבים מוגנים",
+    "sourceUrl": "https://www.jerusalem.muni.il/he/residents/security/spaces/list/",
     "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
     "alertPlaces": [
       "ירושלים",
@@ -1002,10 +1002,10 @@
     "kind": "מקלט ציבורי",
     "lat": 31.7664774,
     "lng": 35.1769103,
-    "verified": false,
-    "confidence": "fallback",
-    "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
-    "sourceUrl": "",
+    "verified": true,
+    "confidence": "verified",
+    "sourceLabel": "עיריית ירושלים – רשימת מרחבים מוגנים",
+    "sourceUrl": "https://www.jerusalem.muni.il/he/residents/security/spaces/list/",
     "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
     "alertPlaces": [
       "ירושלים",
@@ -1018,10 +1018,10 @@
     "kind": "מקלט ציבורי",
     "lat": 31.7638562,
     "lng": 35.1746491,
-    "verified": false,
-    "confidence": "fallback",
-    "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
-    "sourceUrl": "",
+    "verified": true,
+    "confidence": "verified",
+    "sourceLabel": "עיריית ירושלים – רשימת מרחבים מוגנים",
+    "sourceUrl": "https://www.jerusalem.muni.il/he/residents/security/spaces/list/",
     "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
     "alertPlaces": [
       "ירושלים",
@@ -1051,10 +1051,10 @@
     "kind": "מקלט ציבורי",
     "lat": 31.9354334,
     "lng": 34.8635435,
-    "verified": false,
-    "confidence": "fallback",
-    "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
-    "sourceUrl": "",
+    "verified": true,
+    "confidence": "verified",
+    "sourceLabel": "עיריית רמלה – רשימת מקלטים ציבוריים ומיגוניות",
+    "sourceUrl": "https://ramle.org.il/%D7%A8%D7%A9%D7%99%D7%9E%D7%AA-%D7%94%D7%9E%D7%A7%D7%9C%D7%98%D7%99%D7%9D-%D7%94%D7%A6%D7%99%D7%91%D7%95%D7%A8%D7%99%D7%99%D7%9D/",
     "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
     "alertPlaces": [
       "רמלה",
@@ -1085,10 +1085,10 @@
     "kind": "מקלט ציבורי",
     "lat": 31.7906761,
     "lng": 35.1917225,
-    "verified": false,
-    "confidence": "fallback",
-    "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
-    "sourceUrl": "",
+    "verified": true,
+    "confidence": "verified",
+    "sourceLabel": "עיריית ירושלים – רשימת מרחבים מוגנים",
+    "sourceUrl": "https://www.jerusalem.muni.il/he/residents/security/spaces/list/",
     "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
     "alertPlaces": [
       "ירושלים",
@@ -1464,6 +1464,624 @@
       "תל אביב",
       "תל אביב - מרכז העיר",
       "גבעתיים"
+    ]
+  },
+  {
+    "id": "kfar-saba-park-80",
+    "name": "פארק 80 – סמוך לטניס / תחנת השאיבה, כפר סבא",
+    "kind": "מיגונית ציבורית",
+    "lat": 32.1871,
+    "lng": 34.8932,
+    "notes": "מיקום משוער באזור השכונה הירוקה; נקודת פארק ללא מספר בית מדויק.",
+    "alertPlaces": [
+      "כפר סבא",
+      "הוד השרון",
+      "רעננה"
+    ],
+    "sourceLabel": "User-provided strategic infrastructure report (2026-03-09); pending municipal/Home Front Command point-level verification.",
+    "verified": false,
+    "confidence": "fallback"
+  },
+  {
+    "id": "kfar-saba-gan-sigalon",
+    "name": "השכונה הירוקה 60 – גן סיגלון / גן פיקוס, כפר סבא",
+    "kind": "מרחב מוגן ציבורי",
+    "lat": 32.187361,
+    "lng": 34.893554,
+    "notes": "מיקום משוער לשטח גנים; דורש אימות נקודת כניסה בפועל.",
+    "alertPlaces": [
+      "כפר סבא",
+      "הוד השרון",
+      "רעננה"
+    ],
+    "sourceLabel": "User-provided strategic infrastructure report (2026-03-09); pending municipal/Home Front Command point-level verification.",
+    "verified": false,
+    "confidence": "fallback"
+  },
+  {
+    "id": "kfar-saba-kaplansky-22",
+    "name": "מיגונית – קפלנסקי 22, כפר סבא",
+    "kind": "מיגונית ציבורית",
+    "lat": 32.188992,
+    "lng": 34.903733,
+    "notes": "שכונת עלייה; מול הגינה הציבורית.",
+    "alertPlaces": [
+      "כפר סבא",
+      "הוד השרון",
+      "רעננה"
+    ],
+    "sourceLabel": "User-provided strategic infrastructure report (2026-03-09); pending municipal/Home Front Command point-level verification.",
+    "verified": false,
+    "confidence": "fallback"
+  },
+  {
+    "id": "kfar-saba-israel-yeshayahu-14",
+    "name": "מיגונית – ישראל ישעיהו 14, כפר סבא",
+    "kind": "מיגונית ציבורית",
+    "lat": 32.192877,
+    "lng": 34.894309,
+    "notes": "שכונת עלייה; בסוף הרחוב.",
+    "alertPlaces": [
+      "כפר סבא",
+      "הוד השרון",
+      "רעננה"
+    ],
+    "sourceLabel": "User-provided strategic infrastructure report (2026-03-09); pending municipal/Home Front Command point-level verification.",
+    "verified": false,
+    "confidence": "fallback"
+  },
+  {
+    "id": "kfar-saba-yetziat-europe-11",
+    "name": "מקלט 23 – יציאת אירופה 11, כפר סבא",
+    "kind": "מקלט ציבורי תת-קרקעי",
+    "lat": 32.17171,
+    "lng": 34.920254,
+    "notes": "מרכז העיר.",
+    "alertPlaces": [
+      "כפר סבא",
+      "הוד השרון",
+      "רעננה"
+    ],
+    "sourceLabel": "User-provided strategic infrastructure report (2026-03-09); pending municipal/Home Front Command point-level verification.",
+    "verified": false,
+    "confidence": "fallback"
+  },
+  {
+    "id": "kfar-saba-haneviim-10",
+    "name": "מקלט 3 – הנביאים 10, כפר סבא",
+    "kind": "מקלט ציבורי עילי",
+    "lat": 32.187755,
+    "lng": 34.939983,
+    "notes": "מרכז העיר.",
+    "alertPlaces": [
+      "כפר סבא",
+      "הוד השרון",
+      "רעננה"
+    ],
+    "sourceLabel": "User-provided strategic infrastructure report (2026-03-09); pending municipal/Home Front Command point-level verification.",
+    "verified": false,
+    "confidence": "fallback"
+  },
+  {
+    "id": "kfar-saba-amos-10",
+    "name": "מקלט 6 – עמוס 10, כפר סבא",
+    "kind": "מקלט ציבורי עילי",
+    "lat": 32.185072,
+    "lng": 34.937628,
+    "notes": "מרכז העיר.",
+    "alertPlaces": [
+      "כפר סבא",
+      "הוד השרון",
+      "רעננה"
+    ],
+    "sourceLabel": "User-provided strategic infrastructure report (2026-03-09); pending municipal/Home Front Command point-level verification.",
+    "verified": false,
+    "confidence": "fallback"
+  },
+  {
+    "id": "elishama-hakalanit-veradim",
+    "name": "מרחב מוגן – הכלנית פינת הוורדים, אלישמע",
+    "kind": "מרחב מוגן ציבורי",
+    "lat": 32.15175,
+    "lng": 34.9287,
+    "notes": "מיקום משוער בצומת הכלנית/הוורדים; דורש אימות נקודתי.",
+    "alertPlaces": [
+      "דרום השרון",
+      "הוד השרון",
+      "כפר סבא"
+    ],
+    "sourceLabel": "User-provided strategic infrastructure report (2026-03-09); pending municipal/Home Front Command point-level verification.",
+    "verified": false,
+    "confidence": "fallback"
+  },
+  {
+    "id": "elishama-hakalanit-52",
+    "name": "מועדון פיס – הכלנית מול משק 52, אלישמע",
+    "kind": "מרחב מוגן עילי",
+    "lat": 32.151609,
+    "lng": 34.928558,
+    "notes": "נגיש מאזור מחלף אלישמע.",
+    "alertPlaces": [
+      "דרום השרון",
+      "הוד השרון",
+      "כפר סבא"
+    ],
+    "sourceLabel": "User-provided strategic infrastructure report (2026-03-09); pending municipal/Home Front Command point-level verification.",
+    "verified": false,
+    "confidence": "fallback"
+  },
+  {
+    "id": "horashim-kibbutz-shelter",
+    "name": "מקלט ציבורי – קיבוץ חורשים",
+    "kind": "מקלט ציבורי תת-קרקעי",
+    "lat": 32.106379,
+    "lng": 34.946603,
+    "notes": "מיקום כללי בקיבוץ חורשים; דורש אימות כניסה מדויקת.",
+    "alertPlaces": [
+      "דרום השרון",
+      "ראש העין",
+      "כפר קאסם"
+    ],
+    "sourceLabel": "User-provided strategic infrastructure report (2026-03-09); pending municipal/Home Front Command point-level verification.",
+    "verified": false,
+    "confidence": "fallback"
+  },
+  {
+    "id": "hod-hasharon-hamacabim-44",
+    "name": "מקלט ציבורי – המכבים 44, הוד השרון",
+    "kind": "מקלט ציבורי",
+    "lat": 32.136163,
+    "lng": 34.898707,
+    "notes": "שכונת נווה נאמן.",
+    "alertPlaces": [
+      "הוד השרון",
+      "כפר סבא",
+      "רעננה"
+    ],
+    "sourceLabel": "User-provided strategic infrastructure report (2026-03-09); pending municipal/Home Front Command point-level verification.",
+    "verified": false,
+    "confidence": "fallback"
+  },
+  {
+    "id": "hod-hasharon-harav-shalom-nagar-16",
+    "name": "מקלט ציבורי – הרב שלום נגר 16, הוד השרון",
+    "kind": "מקלט ציבורי",
+    "lat": 32.13083,
+    "lng": 34.896849,
+    "notes": "נקודה מקורבת באזור נווה נאמן; דורש אימות כתובת מדויקת.",
+    "alertPlaces": [
+      "הוד השרון",
+      "כפר סבא",
+      "רעננה"
+    ],
+    "sourceLabel": "User-provided strategic infrastructure report (2026-03-09); pending municipal/Home Front Command point-level verification.",
+    "verified": false,
+    "confidence": "fallback"
+  },
+  {
+    "id": "ta-carlibach-a",
+    "name": "תחנת קרליבך – כניסה A (לינקולן/קרליבך, ת״א)",
+    "kind": "תחנת רכבת קלה / מרחב מוגן",
+    "lat": 32.066035,
+    "lng": 34.782959,
+    "notes": "מיפוי כניסה לפי צומת מרכזית.",
+    "alertPlaces": [
+      "תל אביב",
+      "תל אביב - מרכז העיר",
+      "תל אביב - מזרח",
+      "רמת גן",
+      "גבעתיים"
+    ],
+    "sourceLabel": "Strategic report + Tel Aviv emergency portal (entry-level mapping), pending point-level verification.",
+    "sourceUrl": "https://www.tel-aviv.gov.il/About/Pages/EmergenciesAndSafety.aspx",
+    "verified": false,
+    "confidence": "fallback"
+  },
+  {
+    "id": "ta-carlibach-b",
+    "name": "תחנת קרליבך – כניסה B (קרליבך/מנחם בגין, ת״א)",
+    "kind": "תחנת רכבת קלה / מרחב מוגן",
+    "lat": 32.071049,
+    "lng": 34.78231,
+    "notes": "מיפוי כניסה לפי הרחוב קרליבך.",
+    "alertPlaces": [
+      "תל אביב",
+      "תל אביב - מרכז העיר",
+      "תל אביב - מזרח",
+      "רמת גן",
+      "גבעתיים"
+    ],
+    "sourceLabel": "Strategic report + Tel Aviv emergency portal (entry-level mapping), pending point-level verification.",
+    "sourceUrl": "https://www.tel-aviv.gov.il/About/Pages/EmergenciesAndSafety.aspx",
+    "verified": false,
+    "confidence": "fallback"
+  },
+  {
+    "id": "ta-carlibach-c",
+    "name": "תחנת קרליבך – כניסה C (קרליבך/מנחם בגין, ת״א)",
+    "kind": "תחנת רכבת קלה / מרחב מוגן",
+    "lat": 32.066545,
+    "lng": 34.783374,
+    "notes": "מיפוי כניסה לפי הרחוב קרליבך.",
+    "alertPlaces": [
+      "תל אביב",
+      "תל אביב - מרכז העיר",
+      "תל אביב - מזרח",
+      "רמת גן",
+      "גבעתיים"
+    ],
+    "sourceLabel": "Strategic report + Tel Aviv emergency portal (entry-level mapping), pending point-level verification.",
+    "sourceUrl": "https://www.tel-aviv.gov.il/About/Pages/EmergenciesAndSafety.aspx",
+    "verified": false,
+    "confidence": "fallback"
+  },
+  {
+    "id": "ta-allenby-a-63",
+    "name": "תחנת אלנבי – כניסה A (יהודה הלוי 63, ת״א)",
+    "kind": "תחנת רכבת קלה / מרחב מוגן",
+    "lat": 32.063392,
+    "lng": 34.775525,
+    "notes": "כתובת חלופית לדיווח קודם (יהודה הלוי 47); דורש אימות שילוט כניסה בפועל.",
+    "alertPlaces": [
+      "תל אביב",
+      "תל אביב - מרכז העיר",
+      "תל אביב - מזרח",
+      "רמת גן",
+      "גבעתיים"
+    ],
+    "sourceLabel": "Strategic report + Tel Aviv emergency portal (entry-level mapping), pending point-level verification.",
+    "sourceUrl": "https://www.tel-aviv.gov.il/About/Pages/EmergenciesAndSafety.aspx",
+    "verified": false,
+    "confidence": "fallback"
+  },
+  {
+    "id": "ta-bazel-42",
+    "name": "חניון בזל – בזל 42, תל אביב",
+    "kind": "חניון מחסה",
+    "lat": 32.089704,
+    "lng": 34.77993,
+    "notes": "כניסה למחסה מתוך החניון/פיר מדרגות לפי הדיווח.",
+    "alertPlaces": [
+      "תל אביב",
+      "תל אביב - מרכז העיר",
+      "תל אביב - צפון העיר"
+    ],
+    "sourceLabel": "Strategic report + Tel Aviv emergency portal (entry-level mapping), pending point-level verification.",
+    "sourceUrl": "https://www.tel-aviv.gov.il/About/Pages/EmergenciesAndSafety.aspx",
+    "verified": false,
+    "confidence": "fallback"
+  },
+  {
+    "id": "ta-rothschild-1",
+    "name": "חניון רוטשילד 1 – שדרות רוטשילד 1, תל אביב",
+    "kind": "חניון מחסה",
+    "lat": 32.063123,
+    "lng": 34.768903,
+    "notes": "קצה השדרה.",
+    "alertPlaces": [
+      "תל אביב",
+      "תל אביב - מרכז העיר",
+      "תל אביב - יפו"
+    ],
+    "sourceLabel": "Strategic report + Tel Aviv emergency portal (entry-level mapping), pending point-level verification.",
+    "sourceUrl": "https://www.tel-aviv.gov.il/About/Pages/EmergenciesAndSafety.aspx",
+    "verified": false,
+    "confidence": "fallback"
+  },
+  {
+    "id": "ta-chelnov-22",
+    "name": "חניון כיכר עליה – צ׳לנוב 22, תל אביב",
+    "kind": "חניון מחסה",
+    "lat": 32.057633,
+    "lng": 34.774788,
+    "notes": "נגיש לדרום העיר.",
+    "alertPlaces": [
+      "תל אביב",
+      "תל אביב - יפו",
+      "תל אביב - דרום העיר"
+    ],
+    "sourceLabel": "Strategic report + Tel Aviv emergency portal (entry-level mapping), pending point-level verification.",
+    "sourceUrl": "https://www.tel-aviv.gov.il/About/Pages/EmergenciesAndSafety.aspx",
+    "verified": false,
+    "confidence": "fallback"
+  },
+  {
+    "id": "ta-berkovitch-7",
+    "name": "חניון גולדה – ברקוביץ׳ 7, תל אביב",
+    "kind": "חניון מחסה",
+    "lat": 32.076985,
+    "lng": 34.78467,
+    "notes": "סמוך לביהמ\"ש.",
+    "alertPlaces": [
+      "תל אביב",
+      "תל אביב - מרכז העיר",
+      "תל אביב - מזרח"
+    ],
+    "sourceLabel": "Strategic report + Tel Aviv emergency portal (entry-level mapping), pending point-level verification.",
+    "sourceUrl": "https://www.tel-aviv.gov.il/About/Pages/EmergenciesAndSafety.aspx",
+    "verified": false,
+    "confidence": "fallback"
+  },
+  {
+    "id": "ta-hatyt-zain-8",
+    "name": "מקלט ציבורי – הטית זין 8, תל אביב",
+    "kind": "מקלט ציבורי",
+    "lat": 32.115574,
+    "lng": 34.836647,
+    "notes": "שם הרחוב לא זוהה חד-משמעית; מוצב כנקודת רמת החייל מקורבת עד לאימות.",
+    "alertPlaces": [
+      "תל אביב",
+      "תל אביב - צפון העיר",
+      "רמת גן"
+    ],
+    "sourceLabel": "Strategic report + Tel Aviv emergency portal (entry-level mapping), pending point-level verification.",
+    "sourceUrl": "https://www.tel-aviv.gov.il/About/Pages/EmergenciesAndSafety.aspx",
+    "verified": false,
+    "confidence": "fallback"
+  },
+  {
+    "id": "ta-eldad-hadani-11",
+    "name": "מקלט ציבורי – אלדד הדני 11, תל אביב",
+    "kind": "מקלט ציבורי",
+    "lat": 32.109205,
+    "lng": 34.828692,
+    "notes": "נוה דן.",
+    "alertPlaces": [
+      "תל אביב",
+      "תל אביב - צפון העיר",
+      "רמת גן"
+    ],
+    "sourceLabel": "Strategic report + Tel Aviv emergency portal (entry-level mapping), pending point-level verification.",
+    "sourceUrl": "https://www.tel-aviv.gov.il/About/Pages/EmergenciesAndSafety.aspx",
+    "verified": false,
+    "confidence": "fallback"
+  },
+  {
+    "id": "ta-dizengoff-312",
+    "name": "מקלט ציבורי – דיזנגוף 312, תל אביב",
+    "kind": "מקלט ציבורי",
+    "lat": 32.095346,
+    "lng": 34.77654,
+    "notes": "בין בניינים 312-318 לפי הדיווח.",
+    "alertPlaces": [
+      "תל אביב",
+      "תל אביב - צפון העיר",
+      "תל אביב - מרכז העיר"
+    ],
+    "sourceLabel": "Strategic report + Tel Aviv emergency portal (entry-level mapping), pending point-level verification.",
+    "sourceUrl": "https://www.tel-aviv.gov.il/About/Pages/EmergenciesAndSafety.aspx",
+    "verified": false,
+    "confidence": "fallback"
+  },
+  {
+    "id": "ta-dizengoff-255",
+    "name": "מקלט ציבורי – דיזנגוף 255, תל אביב",
+    "kind": "מקלט ציבורי",
+    "lat": 32.093871,
+    "lng": 34.776488,
+    "notes": "בחניון הבניין לפי הדיווח.",
+    "alertPlaces": [
+      "תל אביב",
+      "תל אביב - צפון העיר",
+      "תל אביב - מרכז העיר"
+    ],
+    "sourceLabel": "Strategic report + Tel Aviv emergency portal (entry-level mapping), pending point-level verification.",
+    "sourceUrl": "https://www.tel-aviv.gov.il/About/Pages/EmergenciesAndSafety.aspx",
+    "verified": false,
+    "confidence": "fallback"
+  },
+  {
+    "id": "ta-philadelphia-8",
+    "name": "מקלט ציבורי – פילדלפיה 8, תל אביב",
+    "kind": "מקלט ציבורי",
+    "lat": 32.121523,
+    "lng": 34.840206,
+    "notes": "מקלט 110, צמוד לטיפת חלב לפי הדיווח.",
+    "alertPlaces": [
+      "תל אביב",
+      "תל אביב - צפון העיר",
+      "רמת גן"
+    ],
+    "sourceLabel": "Strategic report + Tel Aviv emergency portal (entry-level mapping), pending point-level verification.",
+    "sourceUrl": "https://www.tel-aviv.gov.il/About/Pages/EmergenciesAndSafety.aspx",
+    "verified": false,
+    "confidence": "fallback"
+  },
+  {
+    "id": "ta-esther-hamalka-12",
+    "name": "מקלט 414 – אסתר המלכה 12, תל אביב",
+    "kind": "מקלט ציבורי",
+    "lat": 32.07884,
+    "lng": 34.775833,
+    "notes": "גינת רות; נגישות לנכים לפי הדיווח.",
+    "alertPlaces": [
+      "תל אביב",
+      "תל אביב - מרכז העיר"
+    ],
+    "sourceLabel": "Strategic report + Tel Aviv emergency portal (entry-level mapping), pending point-level verification.",
+    "sourceUrl": "https://www.tel-aviv.gov.il/About/Pages/EmergenciesAndSafety.aspx",
+    "verified": false,
+    "confidence": "fallback"
+  },
+  {
+    "id": "ta-shvil-hahatzav-8",
+    "name": "מקלט 518 – שביל החצב 8, תל אביב",
+    "kind": "מקלט ציבורי",
+    "lat": 32.067997,
+    "lng": 34.79793,
+    "notes": "נקודה מקורבת באזור ביצרון; גישה משביל האספרגוס 16 לפי הדיווח.",
+    "alertPlaces": [
+      "תל אביב",
+      "תל אביב - מזרח",
+      "גבעתיים"
+    ],
+    "sourceLabel": "Strategic report + Tel Aviv emergency portal (entry-level mapping), pending point-level verification.",
+    "sourceUrl": "https://www.tel-aviv.gov.il/About/Pages/EmergenciesAndSafety.aspx",
+    "verified": false,
+    "confidence": "fallback"
+  },
+  {
+    "id": "ta-hagra-28",
+    "name": "מקלט ציבורי – הגר״א 28, תל אביב",
+    "kind": "מקלט ציבורי",
+    "lat": 32.059301,
+    "lng": 34.781804,
+    "notes": "בתוך המרכז הקהילתי לפי הדיווח.",
+    "alertPlaces": [
+      "תל אביב",
+      "תל אביב - דרום העיר",
+      "תל אביב - יפו"
+    ],
+    "sourceLabel": "Strategic report + Tel Aviv emergency portal (entry-level mapping), pending point-level verification.",
+    "sourceUrl": "https://www.tel-aviv.gov.il/About/Pages/EmergenciesAndSafety.aspx",
+    "verified": false,
+    "confidence": "fallback"
+  },
+  {
+    "id": "ta-don-yehiya-shabtai-1",
+    "name": "מקלט ציבורי – דון-יחייא שבתי 1, תל אביב-יפו",
+    "kind": "מקלט ציבורי",
+    "lat": 32.064769,
+    "lng": 34.765186,
+    "notes": "בתוך ביה\"ס עירוני נווה צדק לפי הדיווח.",
+    "alertPlaces": [
+      "תל אביב",
+      "תל אביב - יפו",
+      "תל אביב - מרכז העיר"
+    ],
+    "sourceLabel": "Strategic report + Tel Aviv emergency portal (entry-level mapping), pending point-level verification.",
+    "sourceUrl": "https://www.tel-aviv.gov.il/About/Pages/EmergenciesAndSafety.aspx",
+    "verified": false,
+    "confidence": "fallback"
+  },
+  {
+    "id": "latrun-dor-alon",
+    "name": "תחנת דלק דור אלון – מחלף לטרון",
+    "kind": "תחנת דלק / נקודת עצירה מוגנת",
+    "lat": 31.836112,
+    "lng": 34.987778,
+    "notes": "מיקום מקורב למחלף לטרון; דורש אימות נקודת התחנה המדויקת.",
+    "alertPlaces": [
+      "לטרון",
+      "מטה יהודה",
+      "בית שמש",
+      "ירושלים"
+    ],
+    "sourceLabel": "User-provided strategic infrastructure report (2026-03-09); pending municipal/Home Front Command point-level verification.",
+    "verified": false,
+    "confidence": "fallback"
+  },
+  {
+    "id": "shoresh-commercial-center",
+    "name": "מרכז מסחרי – מחלף שורש",
+    "kind": "מרכז מסחרי / נקודת עצירה מוגנת",
+    "lat": 31.800861,
+    "lng": 35.07598,
+    "notes": "נקודת עצירה אסטרטגית באזור מחלף שורש.",
+    "alertPlaces": [
+      "שורש",
+      "מטה יהודה",
+      "מבשרת ציון",
+      "ירושלים"
+    ],
+    "sourceLabel": "User-provided strategic infrastructure report (2026-03-09); pending municipal/Home Front Command point-level verification.",
+    "verified": false,
+    "confidence": "fallback"
+  },
+  {
+    "id": "motza-illit-harishonim-library",
+    "name": "מקלט הספריה – הראשונים, מוצא עילית",
+    "kind": "מקלט ציבורי עילי",
+    "lat": 31.794649,
+    "lng": 35.157064,
+    "notes": "רחוב הראשונים, מיקום רחובי כללי.",
+    "alertPlaces": [
+      "ירושלים",
+      "מוצא עילית",
+      "מבשרת ציון"
+    ],
+    "sourceLabel": "User-provided strategic infrastructure report (2026-03-09); pending municipal/Home Front Command point-level verification.",
+    "verified": false,
+    "confidence": "fallback"
+  },
+  {
+    "id": "motza-illit-harishonim-rimonim",
+    "name": "מקלט הרימונים – הראשונים, מוצא עילית",
+    "kind": "מקלט ציבורי עילי",
+    "lat": 31.794649,
+    "lng": 35.157064,
+    "notes": "רחוב הראשונים, מיקום רחובי כללי.",
+    "alertPlaces": [
+      "ירושלים",
+      "מוצא עילית",
+      "מבשרת ציון"
+    ],
+    "sourceLabel": "User-provided strategic infrastructure report (2026-03-09); pending municipal/Home Front Command point-level verification.",
+    "verified": false,
+    "confidence": "fallback"
+  },
+  {
+    "id": "motza-illit-haarazim",
+    "name": "מחסה תת-קרקעי – הארזים, מוצא עילית",
+    "kind": "מחסה תת-קרקעי",
+    "lat": 31.791932,
+    "lng": 35.15992,
+    "notes": "רחוב הארזים, מיקום רחובי כללי.",
+    "alertPlaces": [
+      "ירושלים",
+      "מוצא עילית",
+      "מבשרת ציון"
+    ],
+    "sourceLabel": "User-provided strategic infrastructure report (2026-03-09); pending municipal/Home Front Command point-level verification.",
+    "verified": false,
+    "confidence": "fallback"
+  },
+  {
+    "id": "givat-zeev-shevet-binyamin",
+    "name": "גבעת זאב – שבט בנימין (רשימת מקלטים משותפים)",
+    "kind": "מקלט ציבורי / אזור רחוב",
+    "lat": 31.861398,
+    "lng": 35.168517,
+    "verified": false,
+    "confidence": "fallback",
+    "sourceLabel": "מועצה מקומית גבעת זאב – רשימת מקלטים משותפים",
+    "sourceUrl": "https://www.givat-zeev.muni.il/%D7%A8%D7%A9%D7%99%D7%9E%D7%AA-%D7%94%D7%9E%D7%A7%D7%9C%D7%98%D7%99%D7%9D-%D7%94%D7%9E%D7%A9%D7%95%D7%AA%D7%A4%D7%99%D7%9D/",
+    "notes": "נקודה רחובית כללית; נדרש אימות מספר מקלט/כניסה בשטח.",
+    "alertPlaces": [
+      "גבעת זאב",
+      "ירושלים"
+    ]
+  },
+  {
+    "id": "givat-zeev-yehoshua-ben-nun",
+    "name": "גבעת זאב – יהושע בן נון (רשימת מקלטים משותפים)",
+    "kind": "מקלט ציבורי / אזור רחוב",
+    "lat": 31.861953,
+    "lng": 35.1683,
+    "verified": false,
+    "confidence": "fallback",
+    "sourceLabel": "מועצה מקומית גבעת זאב – רשימת מקלטים משותפים",
+    "sourceUrl": "https://www.givat-zeev.muni.il/%D7%A8%D7%A9%D7%99%D7%9E%D7%AA-%D7%94%D7%9E%D7%A7%D7%9C%D7%98%D7%99%D7%9D-%D7%94%D7%9E%D7%A9%D7%95%D7%AA%D7%A4%D7%99%D7%9D/",
+    "notes": "נקודה רחובית כללית; נדרש אימות מספר מקלט/כניסה בשטח.",
+    "alertPlaces": [
+      "גבעת זאב",
+      "ירושלים"
+    ]
+  },
+  {
+    "id": "givat-zeev-hagai",
+    "name": "גבעת זאב – הגיא (רשימת מקלטים משותפים)",
+    "kind": "מקלט ציבורי / אזור רחוב",
+    "lat": 31.862087,
+    "lng": 35.170963,
+    "verified": false,
+    "confidence": "fallback",
+    "sourceLabel": "מועצה מקומית גבעת זאב – רשימת מקלטים משותפים",
+    "sourceUrl": "https://www.givat-zeev.muni.il/%D7%A8%D7%A9%D7%99%D7%9E%D7%AA-%D7%94%D7%9E%D7%A7%D7%9C%D7%98%D7%99%D7%9D-%D7%94%D7%9E%D7%A9%D7%95%D7%AA%D7%A4%D7%99%D7%9D/",
+    "notes": "נקודה רחובית כללית; נדרש אימות מספר מקלט/כניסה בשטח.",
+    "alertPlaces": [
+      "גבעת זאב",
+      "ירושלים"
     ]
   }
 ]
