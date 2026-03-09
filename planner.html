@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>תכנון נסיעה | נהג מוגן</title>
+  <meta name="theme-color" content="#08111f" />
+  <meta name="description" content="תכנון מסלול, בדיקת כיסוי מחסות עד 7 דקות, וייצוא לניווט." />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <style>
+    :root{--bg:#08111f;--panel:#0f172a;--soft:#1e293b;--text:#f8fafc;--muted:#94a3b8;--ok:#10b981;--warn:#f59e0b;--danger:#ef4444;--accent:#38bdf8;--line:#24344d}
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text)}
+    #app{height:100%;display:flex;flex-direction:column}
+    .top{position:sticky;top:0;z-index:1000;padding:12px;background:linear-gradient(180deg,rgba(8,17,31,.98),rgba(8,17,31,.9));backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
+    #map{flex:1;min-height:38vh}
+    h1{font-size:18px;margin:0;font-weight:900}
+    .sub{font-size:12px;color:var(--muted);margin-top:4px}
+    .row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+    .card{margin-top:10px;padding:12px;border-radius:16px;background:rgba(15,23,42,.96);border:1px solid rgba(255,255,255,.07)}
+    .instruction{font-size:14px;line-height:1.45;font-weight:800}
+    .tiny{font-size:12px;color:var(--muted);line-height:1.45}
+    .btn{border:0;border-radius:12px;padding:11px 12px;font-size:14px;font-weight:900;cursor:pointer}
+    .btn.primary{background:var(--danger);color:white}
+    .btn.secondary{background:var(--soft);color:white}
+    .btn.waze{background:#1d4ed8;color:white}
+    .btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.15)}
+    .btn.small{padding:6px 8px;font-size:12px;border-radius:10px}
+    .btn:disabled{opacity:.5;cursor:not-allowed}
+    .actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+    .exports{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .badge{display:inline-flex;align-items:center;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:800}
+    .badge.pending{background:rgba(148,163,184,.16);color:#cbd5e1}
+    .badge.pass{background:rgba(16,185,129,.16);color:#86efac}
+    .badge.fail{background:rgba(239,68,68,.16);color:#fca5a5}
+    .list{display:grid;gap:8px;max-height:170px;overflow:auto}
+    .item{padding:10px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)}
+    .itemTop{display:flex;justify-content:space-between;align-items:center;gap:8px}
+    .itemButtons{display:flex;gap:6px}
+    .hint{color:#7dd3fc}
+    .station-tip{background:#1e293b;color:#f8fafc;border:0;border-radius:999px;padding:2px 6px}
+    a,a:visited{color:#93c5fd}
+    .leaflet-container{background:#09111f}
+  </style>
+</head>
+<body>
+<div id="app">
+  <div class="top">
+    <div class="row">
+      <div>
+        <h1>תכנון נסיעה</h1>
+        <div class="sub">הוסיפו תחנות על המפה ובדקו שלכל אורך המסלול יש מחסה במרחק עד 7 דקות</div>
+      </div>
+      <a class="btn ghost" href="/">חזרה למסך נהג</a>
+    </div>
+
+    <div class="card">
+      <div class="tiny">הנחיה: לחיצה על המפה מוסיפה תחנה למסלול לפי הסדר. גרירה של סמן משנה מיקום תחנה.</div>
+      <div class="actions" style="margin-top:8px">
+        <button id="addCurrentBtn" class="btn secondary" type="button">הוסף מיקום נוכחי</button>
+        <button id="validateBtn" class="btn primary" type="button">בדוק כיסוי 7 דקות</button>
+        <button id="clearBtn" class="btn ghost" type="button">נקה מסלול</button>
+      </div>
+      <div class="tiny hint" id="dataStatus">טוען נתוני מחסות…</div>
+    </div>
+
+    <div class="card">
+      <div class="row">
+        <div class="instruction">סטטוס מסלול</div>
+        <div id="validationBadge" class="badge pending">ממתין לבדיקה</div>
+      </div>
+      <div class="tiny" id="validationText">הוסיפו לפחות 2 תחנות ואז בדקו כיסוי.</div>
+      <div class="tiny" id="validationMeta">—</div>
+    </div>
+
+    <div class="card">
+      <div class="row">
+        <div class="instruction">תחנות המסלול</div>
+        <div class="tiny" id="stationCount">0 תחנות</div>
+      </div>
+      <div id="stationList" class="list"></div>
+    </div>
+
+    <div class="card">
+      <div class="exports">
+        <button id="googleExportBtn" class="btn primary" type="button" disabled>ייצוא ל-Google Maps</button>
+        <button id="wazeExportBtn" class="btn waze" type="button" disabled>ייצוא ל-Waze</button>
+      </div>
+      <div class="tiny" id="exportHint">הייצוא ייפתח אחרי אישור מסלול מלא בתוך 7 דקות.</div>
+    </div>
+  </div>
+
+  <div id="map"></div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script>
+const CONFIG = {
+  stopsUrl: '/api/stops',
+  etaTargetMinutes: 7,
+  sampleStepMeters: 450,
+};
+
+const $ = (id) => document.getElementById(id);
+const toRad = (d) => d * Math.PI / 180;
+let map, routeLine, shelterLayer, worstMarker;
+let stationMarkers = [];
+let plannedStops = [];
+let shelters = [];
+let lastValidation = null;
+
+function parseJsonFromText(text){
+  const clean = String(text || '').replace(/^\uFEFF/, '').replace(/\u0000/g, '').trim();
+  if(!clean) return null;
+  return JSON.parse(clean);
+}
+function haversine(aLat,aLng,bLat,bLng){
+  const R = 6371000;
+  const dLat = toRad(bLat-aLat), dLng = toRad(bLng-aLng);
+  const a = Math.sin(dLat/2)**2 + Math.cos(toRad(aLat))*Math.cos(toRad(bLat))*Math.sin(dLng/2)**2;
+  return 2 * R * Math.asin(Math.sqrt(a));
+}
+function estDriveMinutes(meters){
+  const km = meters / 1000;
+  const speed = km < 1.2 ? 28 : km < 3 ? 42 : 62;
+  return km / speed * 60;
+}
+function fmtDist(m){ return m < 1000 ? `${Math.round(m)} מ׳` : `${(m/1000).toFixed(1)} ק"מ`; }
+function fmtEta(min){ if(!isFinite(min)) return '—'; return min < 1 ? '<1 דק׳' : `${Math.round(min)} דק׳`; }
+function pointStr(p){ return `${p.lat.toFixed(5)}, ${p.lng.toFixed(5)}`; }
+
+function initMap(){
+  map = L.map('map', {zoomControl:false}).setView([31.96, 34.98], 10);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '© OpenStreetMap'
+  }).addTo(map);
+  L.control.zoom({position:'bottomleft'}).addTo(map);
+  map.on('click', (e) => addStation(e.latlng.lat, e.latlng.lng));
+}
+
+async function loadShelters(){
+  const candidates = [
+    `${CONFIG.stopsUrl}?v=${Date.now()}`,
+    `/data/stops.json?v=${Date.now()}`
+  ];
+  for(const url of candidates){
+    try{
+      const res = await fetch(url, {cache:'no-store'});
+      if(!res.ok) throw new Error(`HTTP ${res.status}`);
+      const payload = parseJsonFromText(await res.text());
+      const list = Array.isArray(payload) ? payload : (payload?.stops || []);
+      if(!Array.isArray(list) || !list.length) throw new Error('empty');
+      shelters = list.map((s) => ({id:s.id, name:s.name, lat:Number(s.lat), lng:Number(s.lng)}))
+        .filter((s) => Number.isFinite(s.lat) && Number.isFinite(s.lng));
+      renderShelters();
+      $('dataStatus').textContent = `נטענו ${shelters.length} מחסות לתכנון.`;
+      return;
+    }catch(err){}
+  }
+  shelters = [];
+  $('dataStatus').textContent = 'שגיאה בטעינת מחסות. הייצוא מושבת עד לטעינה תקינה.';
+}
+
+function renderShelters(){
+  if(shelterLayer) map.removeLayer(shelterLayer);
+  shelterLayer = L.layerGroup();
+  shelters.forEach((s) => {
+    L.circleMarker([s.lat, s.lng], {
+      radius: 4,
+      color: '#10b981',
+      weight: 1,
+      fillOpacity: 0.55
+    }).bindTooltip(s.name, {direction:'top'}).addTo(shelterLayer);
+  });
+  shelterLayer.addTo(map);
+}
+
+function addStation(lat, lng){
+  plannedStops.push({id: `${Date.now()}-${Math.random().toString(16).slice(2,8)}`, lat, lng});
+  renderPlannedStops();
+  resetValidation();
+}
+
+function moveStop(index, direction){
+  const swapWith = index + direction;
+  if(swapWith < 0 || swapWith >= plannedStops.length) return;
+  const temp = plannedStops[index];
+  plannedStops[index] = plannedStops[swapWith];
+  plannedStops[swapWith] = temp;
+  renderPlannedStops();
+  resetValidation();
+}
+
+function removeStop(index){
+  plannedStops.splice(index, 1);
+  renderPlannedStops();
+  resetValidation();
+}
+
+function clearRoute(){
+  plannedStops = [];
+  renderPlannedStops();
+  resetValidation();
+}
+
+function renderPlannedStops(){
+  stationMarkers.forEach((m) => map.removeLayer(m));
+  stationMarkers = [];
+
+  plannedStops.forEach((s, idx) => {
+    const marker = L.marker([s.lat, s.lng], {draggable:true}).addTo(map);
+    marker.bindTooltip(`${idx+1}`, {permanent:true, direction:'top', offset:[0,-12], className:'station-tip'});
+    marker.on('dragend', (e) => {
+      const p = e.target.getLatLng();
+      plannedStops[idx].lat = p.lat;
+      plannedStops[idx].lng = p.lng;
+      renderPlannedStops();
+      resetValidation();
+    });
+    stationMarkers.push(marker);
+  });
+
+  if(routeLine) map.removeLayer(routeLine);
+  if(plannedStops.length >= 2){
+    routeLine = L.polyline(plannedStops.map((p) => [p.lat, p.lng]), {
+      color: '#38bdf8',
+      weight: 5,
+      opacity: 0.95
+    }).addTo(map);
+    map.fitBounds(routeLine.getBounds(), {padding:[22,22]});
+  } else if(plannedStops.length === 1){
+    map.setView([plannedStops[0].lat, plannedStops[0].lng], 14);
+  }
+
+  $('stationCount').textContent = `${plannedStops.length} תחנות`;
+  $('stationList').innerHTML = plannedStops.map((s, i) => `
+    <div class="item">
+      <div class="itemTop">
+        <strong>תחנה ${i+1}</strong>
+        <div class="itemButtons">
+          <button class="btn ghost small" data-action="up" data-index="${i}" type="button">↑</button>
+          <button class="btn ghost small" data-action="down" data-index="${i}" type="button">↓</button>
+          <button class="btn ghost small" data-action="remove" data-index="${i}" type="button">הסר</button>
+        </div>
+      </div>
+      <div class="tiny">${pointStr(s)}</div>
+    </div>
+  `).join('') || '<div class="item tiny">אין תחנות עדיין. לחצו על המפה כדי להוסיף.</div>';
+}
+
+function routeLengthMeters(points){
+  let total = 0;
+  for(let i=0;i<points.length-1;i++){
+    total += haversine(points[i].lat, points[i].lng, points[i+1].lat, points[i+1].lng);
+  }
+  return total;
+}
+
+function sampleSegment(a, b, stepMeters){
+  const distance = haversine(a.lat, a.lng, b.lat, b.lng);
+  const count = Math.max(1, Math.ceil(distance / stepMeters));
+  const samples = [];
+  for(let i=0;i<=count;i++){
+    const t = i / count;
+    samples.push({
+      lat: a.lat + (b.lat - a.lat) * t,
+      lng: a.lng + (b.lng - a.lng) * t
+    });
+  }
+  return samples;
+}
+
+function routeSamples(points, stepMeters){
+  const all = [];
+  for(let i=0;i<points.length-1;i++){
+    let segment = sampleSegment(points[i], points[i+1], stepMeters);
+    if(i>0) segment = segment.slice(1);
+    all.push(...segment);
+  }
+  return all;
+}
+
+function nearestShelter(point){
+  let best = null;
+  for(const s of shelters){
+    const dist = haversine(point.lat, point.lng, s.lat, s.lng);
+    const eta = estDriveMinutes(dist) + 0.6;
+    if(!best || eta < best.eta){
+      best = {shelter:s, dist, eta};
+    }
+  }
+  return best;
+}
+
+function setValidationUI(mode, text, meta=''){
+  const badge = $('validationBadge');
+  badge.className = `badge ${mode}`;
+  badge.textContent = mode === 'pass' ? 'מאושר' : mode === 'fail' ? 'לא מאושר' : 'ממתין לבדיקה';
+  $('validationText').textContent = text;
+  $('validationMeta').textContent = meta || '—';
+}
+
+function setExportState(){
+  const approved = !!(lastValidation && lastValidation.approved && plannedStops.length >= 2);
+  $('googleExportBtn').disabled = !approved;
+  $('wazeExportBtn').disabled = !approved;
+  if(!approved){
+    $('exportHint').textContent = 'הייצוא ייפתח אחרי אישור מסלול מלא בתוך 7 דקות.';
+    return;
+  }
+  $('exportHint').textContent = plannedStops.length > 2
+    ? 'Google Maps יקבל את כל התחנות. Waze יפתח ניווט אל תחנת הסיום (מגבלת Waypoints ב-Waze Web).'
+    : 'המסלול מאושר. אפשר לייצא ל-Google Maps או ל-Waze.';
+}
+
+function clearWorstMarker(){
+  if(worstMarker){
+    map.removeLayer(worstMarker);
+    worstMarker = null;
+  }
+}
+
+function markWorstPoint(worst){
+  clearWorstMarker();
+  if(!worst || worst.eta <= CONFIG.etaTargetMinutes) return;
+  worstMarker = L.circleMarker([worst.point.lat, worst.point.lng], {
+    radius: 10,
+    color: '#ef4444',
+    weight: 2,
+    fillOpacity: 0.25
+  }).addTo(map).bindPopup(`נקודה ללא כיסוי 7 דק׳<br>ETA קרוב: ${fmtEta(worst.eta)}<br>מחסה קרוב: ${worst.shelter.name}`);
+}
+
+function resetValidation(){
+  lastValidation = null;
+  clearWorstMarker();
+  setValidationUI('pending', 'הוסיפו לפחות 2 תחנות ואז בדקו כיסוי.');
+  setExportState();
+}
+
+function validateRouteCoverage(){
+  if(plannedStops.length < 2){
+    setValidationUI('fail', 'צריך לפחות 2 תחנות כדי לבדוק מסלול.');
+    setExportState();
+    return;
+  }
+  if(!shelters.length){
+    setValidationUI('fail', 'אין נתוני מחסות זמינים. נסו לרענן את הדף.');
+    setExportState();
+    return;
+  }
+
+  const samples = routeSamples(plannedStops, CONFIG.sampleStepMeters);
+  let uncovered = 0;
+  let worst = null;
+  for(const point of samples){
+    const near = nearestShelter(point);
+    if(!near) continue;
+    if(!worst || near.eta > worst.eta){
+      worst = {point, shelter:near.shelter, eta:near.eta, dist:near.dist};
+    }
+    if(near.eta > CONFIG.etaTargetMinutes) uncovered++;
+  }
+
+  const covered = samples.length - uncovered;
+  const coveragePct = samples.length ? (covered / samples.length) * 100 : 0;
+  lastValidation = {
+    approved: uncovered === 0,
+    samples: samples.length,
+    uncovered,
+    coveragePct,
+    routeMeters: routeLengthMeters(plannedStops),
+    worst
+  };
+
+  if(lastValidation.approved){
+    clearWorstMarker();
+    setValidationUI(
+      'pass',
+      'המסלול מאושר: לאורך כל הדרך נמצא מחסה בהערכת הגעה עד 7 דקות.',
+      `אורך מסלול ${fmtDist(lastValidation.routeMeters)} · דגימות ${lastValidation.samples} · כיסוי ${coveragePct.toFixed(0)}%`
+    );
+  } else {
+    markWorstPoint(worst);
+    setValidationUI(
+      'fail',
+      'המסלול לא מאושר: נמצאו נקודות בלי מחסה בטווח 7 דקות.',
+      `אורך מסלול ${fmtDist(lastValidation.routeMeters)} · דגימות ${lastValidation.samples} · ללא כיסוי ${lastValidation.uncovered} · גרוע ביותר ${fmtEta(worst?.eta || Infinity)}`
+    );
+  }
+  setExportState();
+}
+
+function exportToGoogleMaps(){
+  if(!lastValidation?.approved || plannedStops.length < 2) return;
+  const fmt = (p) => `${p.lat.toFixed(6)},${p.lng.toFixed(6)}`;
+  const origin = fmt(plannedStops[0]);
+  const destination = fmt(plannedStops[plannedStops.length - 1]);
+  const waypoints = plannedStops.slice(1, -1).map(fmt).join('|');
+  const url = new URL('https://www.google.com/maps/dir/');
+  url.searchParams.set('api', '1');
+  url.searchParams.set('origin', origin);
+  url.searchParams.set('destination', destination);
+  url.searchParams.set('travelmode', 'driving');
+  if(waypoints) url.searchParams.set('waypoints', waypoints);
+  window.open(url.toString(), '_blank', 'noopener');
+}
+
+function exportToWaze(){
+  if(!lastValidation?.approved || plannedStops.length < 2) return;
+  const dst = plannedStops[plannedStops.length - 1];
+  const url = `https://waze.com/ul?ll=${dst.lat.toFixed(6)}%2C${dst.lng.toFixed(6)}&navigate=yes`;
+  window.open(url, '_blank', 'noopener');
+}
+
+function addCurrentLocation(){
+  if(!navigator.geolocation){
+    $('dataStatus').textContent = 'הדפדפן אינו תומך במיקום נוכחי.';
+    return;
+  }
+  navigator.geolocation.getCurrentPosition((pos) => {
+    addStation(pos.coords.latitude, pos.coords.longitude);
+  }, () => {
+    $('dataStatus').textContent = 'לא התקבלה הרשאת מיקום להוספת תחנה נוכחית.';
+  }, {enableHighAccuracy:true, timeout:15000, maximumAge:0});
+}
+
+function bindEvents(){
+  $('stationList').addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-action]');
+    if(!btn) return;
+    const index = Number(btn.dataset.index);
+    const action = btn.dataset.action;
+    if(action === 'remove') removeStop(index);
+    if(action === 'up') moveStop(index, -1);
+    if(action === 'down') moveStop(index, +1);
+  });
+
+  $('addCurrentBtn').addEventListener('click', addCurrentLocation);
+  $('validateBtn').addEventListener('click', validateRouteCoverage);
+  $('clearBtn').addEventListener('click', clearRoute);
+  $('googleExportBtn').addEventListener('click', exportToGoogleMaps);
+  $('wazeExportBtn').addEventListener('click', exportToWaze);
+}
+
+(async function init(){
+  initMap();
+  bindEvents();
+  renderPlannedStops();
+  resetValidation();
+  await loadShelters();
+})();
+</script>
+</body>
+</html>

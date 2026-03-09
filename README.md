@@ -29,6 +29,7 @@ Cloudflare Pages Free includes **500 deploys per month** and Pages Functions usa
 
 ## Files
 - `index.html` – main app
+- `planner.html` – trip planning page (add route stations, verify 7-minute shelter coverage, export route)
 - `data/stops.json` – route-specific verified / fallback targets
 - `functions/api/alerts.js` – Pages Function for alerts
 - `_routes.json` – keeps Functions scoped to `/api/*`
@@ -61,6 +62,15 @@ Then open `http://localhost:8080`
 - normal: `/`
 - start with manual alert active: `/?alert=1`
 - demo upstream alert mode: `/?demo=1`
+- trip planning page: `/planner.html`
+
+## Trip planning flow
+- Open `/planner.html` from the main app link (`תכנון נסיעה`) or directly.
+- Add route stations by clicking the map (or add current location).
+- Click **בדוק כיסוי 7 דקות** to verify shelter coverage along the full route.
+- Export is enabled only after approval:
+  - Google Maps export includes origin, destination, and waypoints.
+  - Waze export opens navigation to the final station (Waze web link limitation).
 
 ## Alerts API behavior
 - Frontend sends current GPS (`lat/lng`) to `/api/alerts`.
