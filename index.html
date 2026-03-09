@@ -23,6 +23,10 @@
     .pill{display:inline-flex;gap:6px;align-items:center;padding:5px 8px;border-radius:999px;background:rgba(56,189,248,.12);color:#7dd3fc;font-size:12px;font-weight:800}
     .instruction{font-size:14px;line-height:1.45;font-weight:800}
     .tiny{font-size:12px;color:var(--muted);line-height:1.4}
+    .locationHelp{display:none;margin-top:8px;padding:10px;border-radius:12px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.35);color:#fde68a}
+    .locationHelp.show{display:block}
+    .retryBtn{display:none;margin-top:8px;width:100%}
+    .retryBtn.show{display:block}
     .metrics{display:grid;grid-template-columns:1fr 1fr;gap:8px}
     .metric{background:rgba(255,255,255,.03);border-radius:14px;padding:10px;border:1px solid rgba(255,255,255,.05)}
     .k{font-size:11px;color:var(--muted);margin-bottom:4px}.v{font-size:16px;font-weight:900}
@@ -64,6 +68,8 @@
         <button id="navBtn" class="btn primary" disabled>פתח Google Maps</button>
       </div>
       <div class="tiny" id="routeStatus">ממתין למיקום…</div>
+      <div class="tiny locationHelp" id="locationHelp"></div>
+      <button id="retryLocationBtn" class="btn ghost retryBtn" type="button">נסה שוב הרשאת מיקום</button>
       <div class="row"><div class="tiny">התקדמות על המסלול</div><div class="tiny" id="routeProgressText">—</div></div>
       <div class="progressBar"><div id="routeProgressFill" class="progressFill"></div></div>
     </div>
@@ -181,6 +187,47 @@ function parseJsonFromText(text){
   const clean=String(text||'').replace(/^\uFEFF/,'').replace(/\u0000/g,'').trim();
   if(!clean) return null;
   return JSON.parse(clean);
+}
+function setLocationHelp(message=''){
+  const el=$('locationHelp');
+  const retryBtn=$('retryLocationBtn');
+  if(!el || !retryBtn) return;
+  if(!message){
+    el.innerHTML='';
+    el.classList.remove('show');
+    retryBtn.classList.remove('show');
+    return;
+  }
+  el.innerHTML=message;
+  el.classList.add('show');
+  retryBtn.classList.add('show');
+}
+function locationPromptMessage(){
+  return 'נדרשת הרשאת מיקום כדי לבחור מחסה מהיר. אשרו את חלונית המיקום של הדפדפן ואז רעננו אם צריך.';
+}
+function locationDeniedMessage(){
+  return 'הרשאת המיקום חסומה כרגע.<br>Chrome/Edge: לחצו על סמל המנעול ליד הכתובת → Site settings → Location → Allow → רענון.<br>Safari iPhone: Settings → Safari → Location → Allow, ואז חזרו ורעננו.';
+}
+function locationUnsupportedMessage(){
+  return 'הדפדפן או ההגדרות הנוכחיות לא מאפשרים גישה למיקום. פתחו את האתר ב-Chrome/Safari מעודכן והפעילו Location לשימוש תקין.';
+}
+function locationInsecureMessage(){
+  return 'גישה למיקום זמינה רק ב-HTTPS. פתחו את האתר דרך כתובת https:// כדי לאפשר הרשאת מיקום.';
+}
+function applyGeolocationPermissionState(state){
+  if(state==='granted'){
+    setLocationHelp('');
+    return;
+  }
+  if(state==='denied'){
+    $('routeStatus').textContent='הרשאת מיקום חסומה בדפדפן.';
+    setLocationHelp(locationDeniedMessage());
+    return;
+  }
+  if(state==='prompt' && !currentPosition){
+    $('routeStatus').textContent='ממתין לאישור הרשאת מיקום מהדפדפן…';
+    setLocationHelp(locationPromptMessage());
+  }
 }
 function updateInstruction(active){
   if(!currentNearest){ $('instructionText').textContent='אין יעד זמין כרגע.'; return; }
@@ -318,21 +365,39 @@ function initMap(){
   map.fitBounds(routeLine.getBounds(),{padding:[18,18]});
 }
 function startLocation(){
-  if(!navigator.geolocation){ $('routeStatus').textContent='הדפדפן הזה לא תומך במיקום.'; return; }
-  const onSuccess = (pos) => updateNearest(pos, $('alertBadge').classList.contains('danger'));
+  if(!window.isSecureContext){
+    $('routeStatus').textContent='לא ניתן לגשת למיקום מחוץ ל-HTTPS.';
+    setLocationHelp(locationInsecureMessage());
+    return;
+  }
+  if(!navigator.geolocation){
+    $('routeStatus').textContent='הדפדפן הזה לא תומך במיקום.';
+    setLocationHelp(locationUnsupportedMessage());
+    return;
+  }
+  const onSuccess = (pos) => {
+    setLocationHelp('');
+    updateNearest(pos, $('alertBadge').classList.contains('danger'));
+  };
   const onError = (err) => {
     if(err?.code===1){
-      $('routeStatus').textContent='הרשאת מיקום נדחתה/נחסמה. אפשרו Location עבור האתר ורעננו.';
+      $('routeStatus').textContent='הרשאת מיקום נדחתה/נחסמה.';
+      setLocationHelp(locationDeniedMessage());
+      return;
+    }
+    if(err?.code===3){
+      $('routeStatus').textContent='תם הזמן לבקשת המיקום.';
+      setLocationHelp(locationPromptMessage());
       return;
     }
     $('routeStatus').textContent='שגיאת מיקום: '+(err?.message || 'unknown');
+    setLocationHelp(locationUnsupportedMessage());
   };
 
   if(navigator.permissions?.query){
     navigator.permissions.query({name:'geolocation'}).then((status)=>{
-      if(status.state==='denied'){
-        $('routeStatus').textContent='הרשאת מיקום חסומה בדפדפן. אפשרו Location עבור bbsafe.pages.dev.';
-      }
+      applyGeolocationPermissionState(status.state);
+      status.onchange = () => applyGeolocationPermissionState(status.state);
     }).catch(()=>{});
   }
 
@@ -345,6 +410,7 @@ function startLocation(){
   if (urlParams.get('demo') === '1') CONFIG.alertsUrl = '/api/alerts?demo=1';
   $('manualAlertBtn').textContent = manualAlert ? 'התראה ידנית: פעילה' : 'התראה ידנית: כבוי';
   initMap(); startLocation(); await loadStops(); renderStops(); if(currentPosition){ updateNearest(currentPosition, $('alertBadge').classList.contains('danger')); } $('navBtn').addEventListener('click', openGoogle); $('wazeBtn').addEventListener('click', openWaze);
+  $('retryLocationBtn').addEventListener('click', startLocation);
   $('manualAlertBtn').addEventListener('click',()=>{ manualAlert=!manualAlert; $('manualAlertBtn').textContent=manualAlert ? 'התראה ידנית: פעילה' : 'התראה ידנית: כבוי'; pollAlerts(); });
   await pollAlerts(); setInterval(pollAlerts, CONFIG.pollMs);
 })();
