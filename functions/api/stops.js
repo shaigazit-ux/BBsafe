@@ -1,4 +1,6 @@
 export async function onRequestGet(context) {
+  const reqUrl = new URL(context.request.url);
+  const debug = reqUrl.searchParams.get('debug') === '1';
   const headers = {
     'content-type': 'application/json; charset=utf-8',
     'cache-control': 'no-store',
@@ -14,18 +16,36 @@ export async function onRequestGet(context) {
     return new Response(JSON.stringify({ error: 'failed_to_load_base_stops' }), { status: 500, headers });
   }
 
-  const liveUrl = context.env.LIVE_STOPS_URL || '';
+  const liveUrl = (context.env.LIVE_STOPS_URL || '').trim();
+  const parseJsonText = (text) => JSON.parse(String(text || '').replace(/^\uFEFF/, '').replace(/\u0000/g, '').trim());
+  const withCacheBust = (urlLike) => {
+    const u = new URL(urlLike);
+    // Minute-level cache busting avoids stale CDN copies while keeping the URL stable-ish.
+    u.searchParams.set('_ts', String(Math.floor(Date.now() / 60000)));
+    return u.toString();
+  };
+
   let liveStops = [];
   let liveMeta = null;
+  let liveStatus = null;
+  let liveUrlUsed = '';
   if (liveUrl) {
     try {
-      const liveRes = await fetch(liveUrl, { cf: { cacheTtl: 60, cacheEverything: false } });
+      liveUrlUsed = withCacheBust(liveUrl);
+      const liveRes = await fetch(liveUrlUsed, {
+        cache: 'no-store',
+        cf: { cacheTtl: 0, cacheEverything: false }
+      });
+      liveStatus = liveRes.status;
       if (liveRes.ok) {
-        const payload = await liveRes.json();
+        const payload = parseJsonText(await liveRes.text());
         liveStops = Array.isArray(payload) ? payload : (payload.stops || []);
         liveMeta = Array.isArray(payload) ? null : (payload.meta || null);
+      } else {
+        liveMeta = { warning: 'live_source_http_error' };
       }
     } catch (err) {
+      liveStatus = 0;
       liveMeta = { warning: 'live_source_unreachable' };
     }
   }
@@ -40,13 +60,15 @@ export async function onRequestGet(context) {
   const result = {
     meta: {
       liveUrlConfigured: Boolean(liveUrl),
+      liveStatus,
       baseCount: baseStops.length,
       liveCount: liveStops.length,
       mergedCount: merged.size,
       message: liveUrl
         ? `נתוני בסיס + עדכון חי (${liveStops.length})`
         : 'נתוני בסיס בלבד — אין מקור live overrides',
-      ...(liveMeta || {})
+      ...(liveMeta || {}),
+      ...(debug ? { liveUrlUsed } : {})
     },
     stops: Array.from(merged.values())
   };
