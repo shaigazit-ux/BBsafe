@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "manual-live-overrides",
-    "updatedAt": "2026-03-09T15:55:14+02:00",
-    "note": "Synced from data/stops.json to keep LIVE_STOPS_URL current"
+    "updatedAt": "2026-03-09T16:18:28+02:00",
+    "note": "Synced from data/stops.json (stable curated list)"
   },
   "stops": [
     {
@@ -224,6 +224,914 @@
         "אבו גוש",
         "קריית יערים",
         "מבשרת ציון"
+      ]
+    },
+    {
+      "id": "ta-weizmann-4",
+      "name": "חניון בית אסיה – וייצמן 4, תל אביב",
+      "kind": "חניון מחסה לציבור",
+      "lat": 32.0782941,
+      "lng": 34.7886936,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "תל אביב",
+        "תל אביב - מרכז העיר",
+        "רמת גן",
+        "גבעתיים"
+      ]
+    },
+    {
+      "id": "ta-begin-130",
+      "name": "תחנת שאול המלך (כניסה C) – מנחם בגין 130, תל אביב",
+      "kind": "תחנה תת-קרקעית",
+      "lat": 32.0674923,
+      "lng": 34.7854647,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "תל אביב",
+        "תל אביב - מרכז העיר",
+        "רמת גן",
+        "גבעתיים"
+      ]
+    },
+    {
+      "id": "ta-begin-125",
+      "name": "תחנת שאול המלך (כניסה A) – מנחם בגין 125, תל אביב",
+      "kind": "תחנה תת-קרקעית",
+      "lat": 32.0730925,
+      "lng": 34.7893649,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "תל אביב",
+        "תל אביב - מרכז העיר",
+        "רמת גן",
+        "גבעתיים"
+      ]
+    },
+    {
+      "id": "ta-begin-144",
+      "name": "תחנת שאול המלך (כניסה B) – מנחם בגין 144, תל אביב",
+      "kind": "תחנה תת-קרקעית",
+      "lat": 32.077632,
+      "lng": 34.793041,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "תל אביב",
+        "תל אביב - מרכז העיר",
+        "רמת גן",
+        "גבעתיים"
+      ]
+    },
+    {
+      "id": "ta-habima-kikar",
+      "name": "חניון הבימה – כיכר התרבות, תל אביב",
+      "kind": "חניון תת-קרקעי",
+      "lat": 32.0724611,
+      "lng": 34.7799751,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "תל אביב",
+        "תל אביב - מרכז העיר",
+        "רמת גן",
+        "גבעתיים"
+      ]
+    },
+    {
+      "id": "ta-haaliya-17",
+      "name": "מקלט ציבורי 707 – העלייה 17, תל אביב",
+      "kind": "מקלט ציבורי",
+      "lat": 32.059102,
+      "lng": 34.77369,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "תל אביב",
+        "תל אביב - מרכז העיר",
+        "יפו"
+      ]
+    },
+    {
+      "id": "ta-hagolan-134",
+      "name": "מקלט ציבורי – הגולן 134, תל אביב",
+      "kind": "מקלט ציבורי",
+      "lat": 32.114724,
+      "lng": 34.838548,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "תל אביב",
+        "תל אביב - מזרח",
+        "רמת גן"
+      ]
+    },
+    {
+      "id": "ta-yedidia-frenkel-44",
+      "name": "מקלט ציבורי – ידידיה פרנקל 44, תל אביב",
+      "kind": "מקלט ציבורי",
+      "lat": 32.0565581,
+      "lng": 34.7736997,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "תל אביב",
+        "יפו"
+      ]
+    },
+    {
+      "id": "ta-shapira-21",
+      "name": "בית ספר 20363 – צבי הרמן שפירא 21, תל אביב",
+      "kind": "מקלט במוסד ציבורי",
+      "lat": 32.075491,
+      "lng": 34.778113,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "תל אביב",
+        "תל אביב - צפון"
+      ]
+    },
+    {
+      "id": "yehud-alpert-16",
+      "name": "מקלט אלפרט – אלפרט 16, יהוד",
+      "kind": "מקלט ציבורי",
+      "lat": 32.0343525,
+      "lng": 34.8954513,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "יהוד מונוסון",
+        "אור יהודה",
+        "נתב\"ג"
+      ]
+    },
+    {
+      "id": "yehud-anilevich-17",
+      "name": "מקלט אנילביץ – אנילביץ 17, יהוד",
+      "kind": "מקלט ציבורי",
+      "lat": 32.0324292,
+      "lng": 34.8844867,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "יהוד מונוסון",
+        "אור יהודה",
+        "נתב\"ג"
+      ]
+    },
+    {
+      "id": "yehud-gordon-9",
+      "name": "מקלט גורדון – גורדון 9, יהוד",
+      "kind": "מקלט ציבורי",
+      "lat": 32.0314853,
+      "lng": 34.8848098,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "יהוד מונוסון",
+        "אור יהודה",
+        "נתב\"ג"
+      ]
+    },
+    {
+      "id": "yehud-havradim-43",
+      "name": "מקלט הורדים – הורדים 43, יהוד",
+      "kind": "מקלט ציבורי",
+      "lat": 32.0324213,
+      "lng": 34.8821278,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "יהוד מונוסון",
+        "אור יהודה",
+        "נתב\"ג"
+      ]
+    },
+    {
+      "id": "yehud-mohaliver-76",
+      "name": "מקלט מוהליבר – מוהליבר 76, יהוד",
+      "kind": "מקלט ציבורי",
+      "lat": 32.0328456,
+      "lng": 34.8977388,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "יהוד מונוסון",
+        "אור יהודה",
+        "נתב\"ג"
+      ]
+    },
+    {
+      "id": "yehud-mohaliver-106",
+      "name": "מקלט מוהליבר – מוהליבר 106, יהוד",
+      "kind": "מקלט ציבורי",
+      "lat": 32.0328456,
+      "lng": 34.8977388,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "יהוד מונוסון",
+        "אור יהודה",
+        "נתב\"ג"
+      ]
+    },
+    {
+      "id": "yehud-ram-cohen-5",
+      "name": "מיגוניות – רם כהן 5, יהוד",
+      "kind": "מיגונית",
+      "lat": 32.0405524,
+      "lng": 34.8926142,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "יהוד מונוסון",
+        "אור יהודה",
+        "נתב\"ג"
+      ]
+    },
+    {
+      "id": "yehud-haatzmaut-8",
+      "name": "מיגונית – העצמאות 8, יהוד",
+      "kind": "מיגונית",
+      "lat": 32.0277617,
+      "lng": 34.8849763,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "יהוד מונוסון",
+        "אור יהודה",
+        "נתב\"ג"
+      ]
+    },
+    {
+      "id": "kfar-truman-habrosh-105",
+      "name": "מקלט כפר טרומן – הברוש 105",
+      "kind": "מקלט ציבורי",
+      "lat": 31.9773513,
+      "lng": 34.9259473,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "כפר טרומן",
+        "שוהם",
+        "נתב\"ג"
+      ]
+    },
+    {
+      "id": "ramla-tsidon-4",
+      "name": "מקלט ביל״ו – צידון 4, רמלה",
+      "kind": "מקלט ציבורי",
+      "lat": 31.9214221,
+      "lng": 34.8714865,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "רמלה",
+        "לוד",
+        "בית דגן"
+      ]
+    },
+    {
+      "id": "ramla-yavne-12",
+      "name": "מקלט ביל״ו – יבנה 12, רמלה",
+      "kind": "מקלט ציבורי",
+      "lat": 31.9208936,
+      "lng": 34.8696362,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "רמלה",
+        "לוד",
+        "בית דגן"
+      ]
+    },
+    {
+      "id": "ramla-masada-5",
+      "name": "מקלט ביל״ו – מסדה 5, רמלה",
+      "kind": "מקלט ציבורי",
+      "lat": 31.9205109,
+      "lng": 34.8715144,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "רמלה",
+        "לוד",
+        "בית דגן"
+      ]
+    },
+    {
+      "id": "ramla-masada-1",
+      "name": "מקלט ביל״ו – מסדה 1, רמלה",
+      "kind": "מקלט ציבורי",
+      "lat": 31.9205109,
+      "lng": 34.8715144,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "רמלה",
+        "לוד",
+        "בית דגן"
+      ]
+    },
+    {
+      "id": "ramla-harav-maimon-4",
+      "name": "מקלט משכנות-מרכז – הרב מימון 4, רמלה",
+      "kind": "מקלט ציבורי",
+      "lat": 31.9313485,
+      "lng": 34.8659284,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "רמלה",
+        "לוד",
+        "בית דגן"
+      ]
+    },
+    {
+      "id": "ramla-harav-kook-11",
+      "name": "מקלט משכנות-מרכז – הרב קוק 11, רמלה",
+      "kind": "מקלט ציבורי",
+      "lat": 31.9324826,
+      "lng": 34.8658275,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "רמלה",
+        "לוד",
+        "בית דגן"
+      ]
+    },
+    {
+      "id": "ramla-yisrael-frankel-15",
+      "name": "מקלט נווה דוד – ישראל פרנקל 15, רמלה",
+      "kind": "מקלט ציבורי",
+      "lat": 31.9360438,
+      "lng": 34.8649101,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "רמלה",
+        "לוד",
+        "בית דגן"
+      ]
+    },
+    {
+      "id": "ramla-engel-9",
+      "name": "מקלט נווה דוד – אנגל 9, רמלה",
+      "kind": "מקלט ציבורי",
+      "lat": 31.9386325,
+      "lng": 34.8648823,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "רמלה",
+        "לוד",
+        "בית דגן"
+      ]
+    },
+    {
+      "id": "ramla-hatzanhanim-4",
+      "name": "מקלט גיורא – הצנחנים 4, רמלה",
+      "kind": "מקלט ציבורי",
+      "lat": 31.932494,
+      "lng": 34.8571149,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "רמלה",
+        "לוד",
+        "בית דגן"
+      ]
+    },
+    {
+      "id": "ramla-golani-4",
+      "name": "מקלט גיורא – חטיבת גולני 4, רמלה",
+      "kind": "מקלט ציבורי",
+      "lat": 31.9313748,
+      "lng": 34.8558524,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "רמלה",
+        "לוד",
+        "בית דגן"
+      ]
+    },
+    {
+      "id": "ramla-amihai-17",
+      "name": "מקלט גיורא – עמיחי 17, רמלה",
+      "kind": "מקלט ציבורי",
+      "lat": 31.9359075,
+      "lng": 34.8565022,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "רמלה",
+        "לוד",
+        "בית דגן"
+      ]
+    },
+    {
+      "id": "ramla-hatzanhanim-10",
+      "name": "מקלט גיורא – הצנחנים 10, רמלה",
+      "kind": "מקלט ציבורי",
+      "lat": 31.9438814,
+      "lng": 34.877558,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "רמלה",
+        "לוד",
+        "בית דגן"
+      ]
+    },
+    {
+      "id": "lod-shlomo-hamelech-13",
+      "name": "מקלט ציבורי – שדרות שלמה המלך 13, לוד",
+      "kind": "מקלט ציבורי",
+      "lat": 31.9490056,
+      "lng": 34.8882638,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "לוד",
+        "רמלה",
+        "נתב\"ג"
+      ]
+    },
+    {
+      "id": "lod-eli-cohen-9",
+      "name": "מקלט ציבורי – אלי כהן 9, לוד",
+      "kind": "מקלט ציבורי",
+      "lat": 31.9487841,
+      "lng": 34.8903863,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "לוד",
+        "רמלה",
+        "נתב\"ג"
+      ]
+    },
+    {
+      "id": "lod-habroshim-4",
+      "name": "מקלט ציבורי – הברושים 4, לוד",
+      "kind": "מקלט ציבורי",
+      "lat": 31.9458758,
+      "lng": 34.8948652,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "לוד",
+        "רמלה",
+        "נתב\"ג"
+      ]
+    },
+    {
+      "id": "modiin-lev-hair-2",
+      "name": "חניון קניון עזריאלי – לב העיר 2, מודיעין",
+      "kind": "חניון תת-קרקעי",
+      "lat": 31.89894,
+      "lng": 35.0079612,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "מודיעין",
+        "מודיעין מכבים רעות",
+        "מכבים רעות"
+      ]
+    },
+    {
+      "id": "modiin-snunit-325",
+      "name": "מקלט 407 – סנונית 325, רעות",
+      "kind": "מקלט ציבורי",
+      "lat": 31.8904814,
+      "lng": 35.0326324,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "מודיעין",
+        "מודיעין מכבים רעות",
+        "מכבים רעות"
+      ]
+    },
+    {
+      "id": "mevaseret-maale-hakastel-8",
+      "name": "מקלט ציבורי – מעלה הקסטל 8, מבשרת ציון",
+      "kind": "מקלט ציבורי",
+      "lat": 31.794036,
+      "lng": 35.1436755,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "מבשרת ציון",
+        "ירושלים"
+      ]
+    },
+    {
+      "id": "mevaseret-palmach-124",
+      "name": "מקלט ציבורי – פלמ\"ח 124, מבשרת ציון",
+      "kind": "מקלט ציבורי",
+      "lat": 31.7974889,
+      "lng": 35.139797,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "מבשרת ציון",
+        "ירושלים"
+      ]
+    },
+    {
+      "id": "mevaseret-mivtsa-kadesh-15",
+      "name": "מקלט ציבורי – מבצע קדש 15, מבשרת ציון",
+      "kind": "מקלט ציבורי",
+      "lat": 31.7942018,
+      "lng": 35.1410376,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "מבשרת ציון",
+        "ירושלים"
+      ]
+    },
+    {
+      "id": "mevaseret-gefen-7",
+      "name": "מקלט ציבורי – גפן 7, מבשרת ציון",
+      "kind": "מקלט ציבורי",
+      "lat": 31.7907479,
+      "lng": 35.1481413,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "מבשרת ציון",
+        "ירושלים"
+      ]
+    },
+    {
+      "id": "mevaseret-mitzpe-habira-68",
+      "name": "מקלט ציבורי – מצפה הבירה 68, מבשרת ציון",
+      "kind": "מקלט ציבורי",
+      "lat": 31.7916217,
+      "lng": 35.1459343,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "מבשרת ציון",
+        "ירושלים"
+      ]
+    },
+    {
+      "id": "jerusalem-habanai-4",
+      "name": "מקלט 744 – הבנאי 4, ירושלים",
+      "kind": "מקלט ציבורי",
+      "lat": 31.776293,
+      "lng": 35.1920992,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "ירושלים",
+        "בית הכרם",
+        "קריית משה"
+      ]
+    },
+    {
+      "id": "jerusalem-habanai-30",
+      "name": "מקלט 745 – הבנאי 30, ירושלים",
+      "kind": "מקלט ציבורי",
+      "lat": 31.7774399,
+      "lng": 35.1922188,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "ירושלים",
+        "בית הכרם",
+        "קריית משה"
+      ]
+    },
+    {
+      "id": "jerusalem-shaarei-torah-7",
+      "name": "מקלט 742 – שערי תורה 7, ירושלים",
+      "kind": "מקלט ציבורי",
+      "lat": 31.7659324,
+      "lng": 35.1829147,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "ירושלים",
+        "בית וגן"
+      ]
+    },
+    {
+      "id": "jerusalem-bait-vagan-39",
+      "name": "מקלט 743 – בית וגן 39, ירושלים",
+      "kind": "מקלט ציבורי",
+      "lat": 31.7691054,
+      "lng": 35.1845934,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "ירושלים",
+        "בית וגן"
+      ]
+    },
+    {
+      "id": "jerusalem-gat-23",
+      "name": "מקלט ציבורי – גת 23, ירושלים",
+      "kind": "מקלט ציבורי",
+      "lat": 31.7862708,
+      "lng": 35.1973185,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "ירושלים",
+        "קריית משה"
+      ]
+    },
+    {
+      "id": "jerusalem-harav-zvi-yehuda-13",
+      "name": "מקלט ציבורי – הרב צבי יהודה 13, ירושלים",
+      "kind": "מקלט ציבורי",
+      "lat": 31.787345,
+      "lng": 35.1962455,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "ירושלים",
+        "קריית משה"
+      ]
+    },
+    {
+      "id": "jerusalem-ad-gordon-10",
+      "name": "מקלט ציבורי – א.ד. גורדון 10, ירושלים",
+      "kind": "מקלט ציבורי",
+      "lat": 31.7664774,
+      "lng": 35.1769103,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "ירושלים",
+        "קריית היובל"
+      ]
+    },
+    {
+      "id": "jerusalem-kleinman-3",
+      "name": "מקלט ציבורי – קליינמן 3, ירושלים",
+      "kind": "מקלט ציבורי",
+      "lat": 31.7638562,
+      "lng": 35.1746491,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "ירושלים",
+        "קריית היובל"
+      ]
+    },
+    {
+      "id": "beit-nehemia-hayasmin-66",
+      "name": "מקלט בית נחמיה – דרך היסמין 66",
+      "kind": "מקלט ציבורי",
+      "lat": 31.9795614,
+      "lng": 34.9566309,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "בית נחמיה",
+        "שוהם",
+        "נתב\"ג"
+      ]
+    },
+    {
+      "id": "ramla-dov-hoz-1",
+      "name": "מקלט נווה דוד – דוב הוז 1, רמלה",
+      "kind": "מקלט ציבורי",
+      "lat": 31.9354334,
+      "lng": 34.8635435,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "רמלה",
+        "לוד",
+        "בית דגן"
+      ]
+    },
+    {
+      "id": "lod-haveradim-1",
+      "name": "מקלט ציבורי – הוורדים 1, לוד",
+      "kind": "מקלט ציבורי",
+      "lat": 31.9431988,
+      "lng": 34.8799145,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "לוד",
+        "רמלה",
+        "נתב\"ג"
+      ]
+    },
+    {
+      "id": "jerusalem-rabi-israel-najara-27",
+      "name": "מקלט ציבורי – רבי ישראל נג׳ארה 27, ירושלים",
+      "kind": "מקלט ציבורי",
+      "lat": 31.7906761,
+      "lng": 35.1917225,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Added from user-researched address list. Validate local availability/opening status before operational use.",
+      "alertPlaces": [
+        "ירושלים",
+        "גבעת שאול"
+      ]
+    },
+    {
+      "id": "mevaseret-harishonim-20",
+      "name": "מקלט ציבורי – שדרות הראשונים 20, מבשרת ציון",
+      "kind": "מקלט ציבורי",
+      "lat": 31.7931349,
+      "lng": 35.1420103,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Address geocoded at street/intersection level; verify exact entrance point before operational use.",
+      "alertPlaces": [
+        "מבשרת ציון",
+        "ירושלים"
+      ]
+    },
+    {
+      "id": "yehud-tannenbaum-15",
+      "name": "מתחם הצופים – טננבאום 15, יהוד",
+      "kind": "מקלט ציבורי",
+      "lat": 32.035488,
+      "lng": 34.894918,
+      "verified": false,
+      "confidence": "fallback",
+      "sourceLabel": "User-provided strategic report (2026-03-09), pending municipal/Pikud HaOref verification",
+      "sourceUrl": "",
+      "notes": "Address geocoded at street/intersection level; verify exact entrance point before operational use.",
+      "alertPlaces": [
+        "יהוד מונוסון",
+        "אור יהודה",
+        "נתב\"ג"
       ]
     }
   ]
