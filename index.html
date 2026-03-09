@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>נהג מוגן V6 – מסלול לה גארדיה ↔ נווה אילן</title>
+  <meta name="theme-color" content="#08111f" />
+  <meta name="description" content="אתר מובייל פשוט שמזהה את מיקום הנהג, בוחר יעד מיגון במסלול, ופותח ניווט מיידי במקרה של התראה." />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <style>
+    :root{--bg:#08111f;--panel:#0f172a;--soft:#1e293b;--text:#f8fafc;--muted:#94a3b8;--ok:#10b981;--warn:#f59e0b;--danger:#ef4444;--accent:#38bdf8;--line:#24344d}
+    *{box-sizing:border-box} html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text)}
+    #app{height:100%;display:flex;flex-direction:column}
+    .top{position:sticky;top:0;z-index:1000;padding:12px;background:linear-gradient(180deg,rgba(8,17,31,.98),rgba(8,17,31,.92));backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
+    #map{flex:1;min-height:34vh}
+    h1{font-size:18px;margin:0;font-weight:900} .sub{font-size:12px;color:var(--muted);margin-top:4px}
+    .row{display:flex;align-items:center;justify-content:space-between;gap:8px}.stack{display:grid;gap:10px}
+    .card{margin-top:10px;padding:12px;border-radius:18px;background:rgba(15,23,42,.96);border:1px solid rgba(255,255,255,.07)}
+    .hero{background:linear-gradient(180deg,rgba(239,68,68,.14),rgba(56,189,248,.08))}
+    .badge{display:inline-flex;gap:6px;align-items:center;padding:7px 10px;border-radius:999px;background:var(--soft);font-size:12px;font-weight:800;color:var(--muted)}
+    .badge.ok{background:rgba(16,185,129,.14);color:#86efac}.badge.warn{background:rgba(245,158,11,.14);color:#fcd34d}.badge.danger{background:rgba(239,68,68,.14);color:#fca5a5}
+    .pill{display:inline-flex;gap:6px;align-items:center;padding:5px 8px;border-radius:999px;background:rgba(56,189,248,.12);color:#7dd3fc;font-size:12px;font-weight:800}
+    .instruction{font-size:14px;line-height:1.45;font-weight:800}
+    .tiny{font-size:12px;color:var(--muted);line-height:1.4}
+    .metrics{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .metric{background:rgba(255,255,255,.03);border-radius:14px;padding:10px;border:1px solid rgba(255,255,255,.05)}
+    .k{font-size:11px;color:var(--muted);margin-bottom:4px}.v{font-size:16px;font-weight:900}
+    .cta{display:grid;grid-template-columns:1fr 1fr;gap:8px}.btn{border:0;border-radius:14px;padding:14px 12px;font-size:15px;font-weight:900;cursor:pointer}
+    .btn.primary{background:var(--danger);color:white}.btn.secondary{background:var(--soft);color:white}.btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.12)} .btn:disabled{opacity:.5;cursor:not-allowed}
+    .progressBar{height:10px;border-radius:999px;background:#0b1220;overflow:hidden;border:1px solid rgba(255,255,255,.08)} .progressFill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),#60a5fa)}
+    .list{display:grid;gap:8px}.item{padding:10px;border-radius:14px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05)} .item strong{display:block;margin-bottom:4px}
+    .tag{display:inline-flex;padding:3px 7px;border-radius:999px;font-size:11px;font-weight:900;margin-inline-start:4px}
+    .tag.verified{background:rgba(16,185,129,.14);color:#86efac}.tag.fallback{background:rgba(245,158,11,.14);color:#fcd34d}.tag.destination{background:rgba(56,189,248,.14);color:#7dd3fc}
+    .footer{padding:12px;background:var(--panel);border-top:1px solid rgba(255,255,255,.07);font-size:12px;color:var(--muted);line-height:1.5}
+    a,a:visited{color:#93c5fd}.leaflet-container{background:#09111f}.leaflet-popup-content{direction:rtl;text-align:right}
+  </style>
+</head>
+<body>
+<div id="app">
+  <div class="top">
+    <div class="row">
+      <div>
+        <h1>נהג מוגן</h1>
+        <div class="sub">לה גארדיה ↔ אולפני נווה אילן</div>
+      </div>
+      <div id="alertBadge" class="badge warn">מקור התראות לא מחובר</div>
+    </div>
+
+    <div class="card hero stack">
+      <div class="row">
+        <div class="pill">לינק אחד לנהג בתחילת הנסיעה</div>
+        <button id="manualAlertBtn" class="btn ghost" style="padding:8px 10px;font-size:12px">התראה ידנית: כבוי</button>
+      </div>
+      <div id="instructionText" class="instruction">האתר ממתין להרשאת מיקום. אם תוגדר התראה פעילה, ייבחר יעד מיגון וייפתח ניווט בלחיצה.</div>
+      <div class="metrics">
+        <div class="metric"><div class="k">יעד כרגע</div><div class="v" id="nearestName">—</div></div>
+        <div class="metric"><div class="k">מרחק</div><div class="v" id="nearestDistance">—</div></div>
+        <div class="metric"><div class="k">ETA</div><div class="v" id="nearestEta">—</div></div>
+        <div class="metric"><div class="k">רמת אימות</div><div class="v" id="dataQuality">—</div></div>
+        <div class="metric"><div class="k">סטטוס 5 דקות</div><div class="v" id="etaWindowStatus">—</div></div>
+      </div>
+      <div class="cta">
+        <button id="navBtn" class="btn primary" disabled>פתח Google Maps</button>
+        <button id="wazeBtn" class="btn secondary" disabled>פתח Waze</button>
+      </div>
+      <div class="tiny" id="routeStatus">ממתין למיקום…</div>
+      <div class="row"><div class="tiny">התקדמות על המסלול</div><div class="tiny" id="routeProgressText">—</div></div>
+      <div class="progressBar"><div id="routeProgressFill" class="progressFill"></div></div>
+    </div>
+
+    <div class="card stack">
+      <div class="row"><div class="tiny">3 היעדים הטובים כרגע</div><div class="tiny" id="refreshText">טעינה…</div></div>
+      <div class="tiny" id="windowHint">יעד עד 5 דקות יקבל עדיפות. אם אין כזה, תופיע המלצה לעצור במחסה קרוב.</div>
+      <div id="candidateList" class="list"></div>
+    </div>
+  </div>
+
+  <div id="map"></div>
+  <div class="footer">
+    זו גרסת V6 פתוחה ל-Web. הניווט נחסם אוטומטית אם אין יעד מחושב בתוך חלון 5 הדקות, ויש API חדש למיזוג נתונים חיים כך שניתן להחליף fallback ביעדים מאומתים בלי לשנות את הלוגיקה בדפדפן.
+  </div>
+</div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script>
+const ROUTE = [
+  [32.0664,34.8117],[32.0651,34.8188],[32.0621,34.8364],[32.0550,34.8680],[32.0422,34.9058],
+  [32.0118,34.9580],[31.9757,34.9901],[31.9307,34.9983],[31.8989,35.0058],[31.8607,34.9886],
+  [31.8330,34.9808],[31.8150,35.0550],[31.8085,35.1105]
+];
+const CONFIG = {
+  stopsUrl: '/api/stops',
+  alertsUrl: '/api/alerts',
+  pollMs: 5000,
+  behindPenaltyFactor: 3,
+  lookAheadBonusMeters: 500,
+  speakOnAlert: true,
+  etaTargetMinutes: 5,
+};
+let map, userMarker, routeLine, choiceLine, routeSegments=[], totalRouteMeters=0, stops=[], currentNearest=null, currentPosition=null, markers=[], manualAlert=false, lastSpoken='', lastStopsMeta=null;
+const urlParams = new URLSearchParams(location.search);
+
+const $ = (id) => document.getElementById(id);
+const toRad = d => d*Math.PI/180;
+function haversine(aLat,aLng,bLat,bLng){ const R=6371000; const dLat=toRad(bLat-aLat), dLng=toRad(bLng-aLng); const a=Math.sin(dLat/2)**2 + Math.cos(toRad(aLat))*Math.cos(toRad(bLat))*Math.sin(dLng/2)**2; return 2*R*Math.asin(Math.sqrt(a)); }
+function fmtDist(m){ return m<1000 ? `${Math.round(m)} מ׳` : `${(m/1000).toFixed(1)} ק"מ`; }
+function estDriveMinutes(m){ const km=m/1000; const speed = km<1.2 ? 28 : km<3 ? 42 : 62; return km/speed*60; }
+function fmtEta(min){ if(!isFinite(min)) return '—'; return min<1 ? '<1 דק׳' : `${Math.round(min)} דק׳`; }
+function routePct(m){ return Math.max(0,Math.min(100,(m/totalRouteMeters)*100)); }
+function speak(text){ try{ const u=new SpeechSynthesisUtterance(text); u.lang='he-IL'; u.rate=1; speechSynthesis.cancel(); speechSynthesis.speak(u);}catch(e){} }
+
+function buildRouteSegments(){
+  totalRouteMeters=0; routeSegments=[];
+  for(let i=0;i<ROUTE.length-1;i++){
+    const a=ROUTE[i], b=ROUTE[i+1], len=haversine(a[0],a[1],b[0],b[1]);
+    routeSegments.push({a,b,len,start:totalRouteMeters,end:totalRouteMeters+len});
+    totalRouteMeters += len;
+  }
+}
+function projectPointToRoute(lat,lng){
+  let best={dist:Infinity,meters:0,lat:ROUTE[0][0],lng:ROUTE[0][1]};
+  for(const seg of routeSegments){
+    const ax=seg.a[1], ay=seg.a[0], bx=seg.b[1], by=seg.b[0], px=lng, py=lat;
+    const abx=bx-ax, aby=by-ay, apx=px-ax, apy=py-ay; const ab2=abx*abx+aby*aby || 1e-12;
+    let t=(apx*abx+apy*aby)/ab2; t=Math.max(0,Math.min(1,t)); const qx=ax+t*abx, qy=ay+t*aby; const d=haversine(lat,lng,qy,qx);
+    if(d<best.dist){ best={dist:d,meters:seg.start+seg.len*t,lat:qy,lng:qx}; }
+  }
+  return best;
+}
+function confidencePenalty(conf){
+  if(conf==='verified') return 0;
+  if(conf==='destination') return 1.2;
+  return 2.5;
+}
+function estimateRoadEta(routePos, stop){
+  const ahead=stop.routeMeters-routePos.meters;
+  const routeGap=Math.abs(ahead);
+  const mainlineKmh = ahead >= 0 ? 85 : 42;
+  const lateralKmh = 22;
+  const mainlineMin = (routeGap/1000) / mainlineKmh * 60;
+  const lateralMeters = (stop.routeOffsetDist || 0) + routePos.dist;
+  const lateralMin = (lateralMeters/1000) / lateralKmh * 60;
+  const behindPenaltyMin = ahead < 0 ? 1.5 : 0;
+  const fixedTurnMin = 0.6;
+  return fixedTurnMin + mainlineMin + lateralMin + behindPenaltyMin;
+}
+function rankStops(lat,lng,routePos){
+  const items = stops.map(s => {
+    const crow=haversine(lat,lng,s.lat,s.lng); const targetRoute=s.routeMeters; const ahead=targetRoute-routePos.meters; const behind=ahead<0; const routeGap=Math.abs(ahead);
+    const eta=estimateRoadEta(routePos, s);
+    const score = eta + confidencePenalty(s.confidence) + (behind ? 3 : 0);
+    return {...s,crow,ahead,routeGap,score,eta,withinWindow: eta <= CONFIG.etaTargetMinutes};
+  });
+  const preferred = items.filter(x=>x.withinWindow && x.confidence==='verified').sort((a,b)=>a.eta-b.eta || a.routeGap-b.routeGap);
+  const withinAny = items.filter(x=>x.withinWindow).sort((a,b)=>a.score-b.score || a.routeGap-b.routeGap);
+  const fallback = items.sort((a,b)=>a.score-b.score || a.routeGap-b.routeGap);
+  return preferred.length ? preferred.concat(fallback.filter(x=>!preferred.find(p=>p.id===x.id)))
+       : withinAny.length ? withinAny.concat(fallback.filter(x=>!withinAny.find(p=>p.id===x.id)))
+       : fallback;
+}
+
+function setBadge(state,label){
+  const el=$("alertBadge"); el.textContent=label; el.className='badge '+state;
+}
+function qualityLabel(s){
+  if(!s) return '—';
+  if(s.confidence==='verified') return 'מאומת';
+  if(s.confidence==='destination') return 'יעד סיום';
+  return 'גיבוי';
+}
+function qualityTag(conf){ return conf==='verified' ? 'verified' : conf==='destination' ? 'destination' : 'fallback'; }
+function updateInstruction(active){
+  if(!currentNearest){ $('instructionText').textContent='אין יעד זמין כרגע.'; return; }
+  if(active){
+    $('instructionText').textContent = currentNearest.withinWindow
+      ? `התראה פעילה. סע/י עכשיו אל ${currentNearest.name}. זמן הגעה משוער ${fmtEta(currentNearest.eta)}.`
+      : `התראה פעילה. אין כרגע יעד מאומת בתוך חלון 5 הדקות. היעד המחושב הקרוב ביותר הוא ${currentNearest.name} (${fmtEta(currentNearest.eta)}), ולכן ההמלצה היא לעצור מיד במחסה קרוב ובטוח ככל האפשר ולא להמשיך ליעד רחוק.`;
+    return;
+  }
+  $('instructionText').textContent = currentNearest.withinWindow
+    ? `במצב המתנה: אם תיכנס עכשיו התראה, היעד המוביל יהיה ${currentNearest.name} (${fmtEta(currentNearest.eta)}).`
+    : `במצב המתנה: אין כרגע יעד מיגון מחושב בתוך 5 דקות. הכפתורים לניווט יישארו כבויים עד שיופיע יעד מתאים.`;
+}
+function etaWindowLabel(s){
+  if(!s) return '—';
+  return s.withinWindow ? 'בתוך חלון' : 'מעל 5 דק׳';
+}
+function updateNearest(pos,alertActive=false){
+  currentPosition=pos;
+  const {latitude:lat, longitude:lng, accuracy}=pos.coords;
+  const routePos=projectPointToRoute(lat,lng); const ranked=rankStops(lat,lng,routePos); const top=ranked.slice(0,3);
+  currentNearest=top[0] || null;
+  $('routeStatus').textContent = `מיקום: ${lat.toFixed(5)}, ${lng.toFixed(5)} · דיוק ${Math.round(accuracy)} מ׳ · סטייה מהמסלול ${fmtDist(routePos.dist)}`;
+  $('routeProgressText').textContent = `${Math.round(routePct(routePos.meters))}%`;
+  $('routeProgressFill').style.width = `${routePct(routePos.meters)}%`;
+  $('nearestName').textContent = currentNearest ? currentNearest.name : '—';
+  $('nearestDistance').textContent = currentNearest ? `${fmtDist(currentNearest.crow)} / ציר ${fmtDist(currentNearest.routeGap)}` : '—';
+  $('nearestEta').textContent = currentNearest ? fmtEta(currentNearest.eta) : '—';
+  $('dataQuality').textContent = qualityLabel(currentNearest);
+  $('etaWindowStatus').textContent = etaWindowLabel(currentNearest);
+  $('candidateList').innerHTML = top.map((s,i)=>`
+    <div class="item">
+      <strong>${i===0?'יעד מוביל':'חלופה'}: ${s.name} <span class="tag ${qualityTag(s.confidence)}">${qualityLabel(s)}</span></strong>
+      <div>${s.kind}</div>
+      <div>${fmtDist(s.crow)} אווירי · ${fmtDist(s.routeGap)} לאורך הציר · ${fmtEta(s.eta)} · ${s.withinWindow ? 'בתוך חלון 5 דק׳' : 'מעל חלון 5 דק׳'}</div>
+      <div class="tiny">${s.notes || ''}</div>
+      <div class="tiny">${s.sourceUrl ? `<a href="${s.sourceUrl}" target="_blank" rel="noopener">מקור</a> · ` : ''}${s.sourceLabel || ''}</div>
+    </div>`).join('') || '<div class="item">אין יעדים טעונים</div>';
+
+  if(!userMarker){ userMarker=L.circleMarker([lat,lng],{radius:10,color:'#fff',weight:2,fillColor:'#2563eb',fillOpacity:1}).addTo(map); }
+  else userMarker.setLatLng([lat,lng]);
+  if(choiceLine) map.removeLayer(choiceLine);
+  if(currentNearest) choiceLine=L.polyline([[lat,lng],[currentNearest.lat,currentNearest.lng]],{color:'#ef4444',weight:4,opacity:.85}).addTo(map);
+  const navEnabled = !!(currentNearest && currentNearest.withinWindow);
+  $('navBtn').disabled=!navEnabled; $('wazeBtn').disabled=!navEnabled;
+  $('navBtn').textContent = navEnabled ? 'פתח Google Maps' : 'אין יעד בתוך 5 דק׳';
+  $('wazeBtn').textContent = navEnabled ? 'פתח Waze' : 'אין יעד בתוך 5 דק׳';
+  updateInstruction(alertActive);
+  $('windowHint').textContent = currentNearest && !currentNearest.withinWindow
+    ? 'אין כרגע יעד מוערך בתוך 5 דקות. במקרה של התראה: עצור מיד במחסה קרוב. ניווט ליעד רחוק נחסם במכוון.'
+    : 'יעד עד 5 דקות יקבל עדיפות. אם אין כזה, תופיע המלצה לעצור במחסה קרוב.';
+}
+async function loadStops(){
+  const res=await fetch(CONFIG.stopsUrl+'?v='+Date.now(),{cache:'no-store'});
+  const payload=await res.json();
+  stops = Array.isArray(payload) ? payload : (payload.stops || []);
+  lastStopsMeta = Array.isArray(payload) ? null : (payload.meta || null);
+  stops.forEach(s => {
+    const proj = projectPointToRoute(s.lat,s.lng);
+    s.routeMeters = proj.meters;
+    s.routeOffsetDist = proj.dist;
+  });
+  if(lastStopsMeta?.message){ $('refreshText').textContent = lastStopsMeta.message; }
+}
+function renderStops(){
+  markers.forEach(m=>map.removeLayer(m)); markers=[];
+  for(const s of stops){ const color=s.confidence==='verified' ? '#10b981' : s.confidence==='destination' ? '#38bdf8' : '#f59e0b';
+    const marker=L.circleMarker([s.lat,s.lng],{radius:8,color,weight:2,fillOpacity:.95}).addTo(map);
+    marker.bindPopup(`<strong>${s.name}</strong><br>${s.kind}<br>${qualityLabel(s)}<br>${s.notes || ''}`); markers.push(marker);
+  }
+}
+function openGoogle(){ if(!currentNearest) return; location.href=`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(currentNearest.lat+','+currentNearest.lng)}&travelmode=driving`; }
+function openWaze(){ if(!currentNearest) return; location.href=`https://waze.com/ul?ll=${currentNearest.lat}%2C${currentNearest.lng}&navigate=yes`; }
+async function pollAlerts(){
+  try{
+    $('refreshText').textContent='מתעדכן…';
+    const res=await fetch(CONFIG.alertsUrl+'?_='+Date.now(),{cache:'no-store'}); if(!res.ok) throw new Error('alerts');
+    const data=await res.json(); const active = manualAlert || !!data.active; const title = active ? (manualAlert ? 'התראה ידנית פעילה' : (data.title || 'התראה פעילה')) : (data.title || 'אין התראה');
+    setBadge(active ? 'danger' : 'ok', title);
+    if(currentPosition) updateNearest(currentPosition, active);
+    if(active && currentNearest && CONFIG.speakOnAlert){ const key=`${currentNearest.id}|${title}|${currentNearest.withinWindow}`; if(lastSpoken!==key){ speak(currentNearest.withinWindow ? `התראה. סע עכשיו אל ${currentNearest.name}` : `התראה. אין יעד בתוך חמש דקות. עצור במחסה קרוב ובטוח ככל האפשר`); lastSpoken=key; } }
+    $('refreshText').textContent=`עודכן ${new Date().toLocaleTimeString('he-IL',{hour:'2-digit',minute:'2-digit',second:'2-digit'})}`;
+  }catch(e){
+    setBadge(manualAlert ? 'danger' : 'warn', manualAlert ? 'התראה ידנית פעילה' : 'מקור התראות לא מחובר');
+    if(currentPosition) updateNearest(currentPosition, manualAlert);
+    $('refreshText').textContent = manualAlert ? 'מצב ידני' : 'ללא מקור התראות';
+  }
+}
+function initMap(){
+  buildRouteSegments();
+  map=L.map('map',{zoomControl:false}).setView([31.96,34.98],10);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap'}).addTo(map);
+  L.control.zoom({position:'bottomleft'}).addTo(map);
+  routeLine=L.polyline(ROUTE,{color:'#38bdf8',weight:5,opacity:.9,dashArray:'8 10'}).addTo(map);
+  L.marker(ROUTE[0]).addTo(map).bindPopup('התחלה: לה גארדיה');
+  L.marker(ROUTE[ROUTE.length-1]).addTo(map).bindPopup('סיום: אולפני נווה אילן');
+  map.fitBounds(routeLine.getBounds(),{padding:[18,18]});
+}
+function startLocation(){
+  if(!navigator.geolocation){ $('routeStatus').textContent='הדפדפן הזה לא תומך במיקום.'; return; }
+  navigator.geolocation.watchPosition(pos => updateNearest(pos, $('alertBadge').classList.contains('danger')), err => { $('routeStatus').textContent='שגיאת מיקום: '+err.message; }, {enableHighAccuracy:true, timeout:15000, maximumAge:2000});
+}
+(async function(){
+  if (urlParams.get('alert') === '1') manualAlert = true;
+  if (urlParams.get('demo') === '1') CONFIG.alertsUrl = '/api/alerts?demo=1';
+  $('manualAlertBtn').textContent = manualAlert ? 'התראה ידנית: פעילה' : 'התראה ידנית: כבוי';
+  initMap(); await loadStops(); renderStops(); startLocation(); $('navBtn').addEventListener('click', openGoogle); $('wazeBtn').addEventListener('click', openWaze);
+  $('manualAlertBtn').addEventListener('click',()=>{ manualAlert=!manualAlert; $('manualAlertBtn').textContent=manualAlert ? 'התראה ידנית: פעילה' : 'התראה ידנית: כבוי'; pollAlerts(); });
+  await pollAlerts(); setInterval(pollAlerts, CONFIG.pollMs);
+})();
+</script>
+</body>
+</html>

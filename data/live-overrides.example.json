@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "source": "manual-live-overrides",
+    "updatedAt": "2026-03-09T12:00:00+02:00"
+  },
+  "stops": [
+    {
+      "id": "latrun-fallback",
+      "name": "לטרון – החלף ליעד מאומת כאן",
+      "kind": "מרחב מוגן מאומת",
+      "confidence": "verified",
+      "verified": true,
+      "sourceLabel": "החלפה חיה לדוגמה",
+      "sourceUrl": "https://example.com/source",
+      "notes": "כל שדה עם אותו id ידרוס את ה-fallback המקורי."
+    }
+  ]
+}

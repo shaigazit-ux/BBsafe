@@ -1,0 +1,98 @@
+[
+  {
+    "id": "ta-shalom-103",
+    "name": "מקלט 531 – דרך השלום 103, ת״א",
+    "kind": "מקלט ציבורי",
+    "lat": 32.07167,
+    "lng": 34.82555,
+    "verified": true,
+    "confidence": "verified",
+    "sourceLabel": "עיריית תל אביב – מסמך סקר מקלט 531 בכתובת דרך השלום 103",
+    "sourceUrl": "https://www.tel-aviv.gov.il/Residents/Environment/Sharedocs/00423421.pdf",
+    "notes": "יעד פתיחה חזק למסלול היציאה ממחלף לה גארדיה / השלום."
+  },
+  {
+    "id": "ta-yigal-alon-30",
+    "name": "מקלט 835 – יגאל אלון 30, ת״א",
+    "kind": "מקלט ציבורי תת-קרקעי",
+    "lat": 32.06745,
+    "lng": 34.82065,
+    "verified": true,
+    "confidence": "verified",
+    "sourceLabel": "עיריית תל אביב – מסמך עירוני מציין מקלט ציבורי תת-קרקעי מספר 835 ביגאל אלון 30",
+    "sourceUrl": "https://www.tel-aviv.gov.il/Transparency/DocLib3/%D7%A4%D7%A8%D7%95%D7%98%D7%95%D7%A7%D7%95%D7%9C%20%D7%95%D7%A2%D7%93%D7%AA%20%D7%94%D7%A7%D7%A6%D7%90%D7%95%D7%AA%20%D7%9E%D7%A1%D7%A4%D7%A8%208%20-%20%D7%9E%D7%95%D7%A0%D7%92%D7%A9.pdf",
+    "notes": "עוד נקודת פתיחה מאומתת סמוך ליציאה ממחלף לה גארדיה / השלום."
+  },
+  {
+    "id": "bg-airport-p3",
+    "name": "חניון טרמינל 3 – נתב״ג",
+    "kind": "חניון תת-קרקעי / יעד ביניים",
+    "lat": 32.00098,
+    "lng": 34.88554,
+    "verified": false,
+    "confidence": "fallback",
+    "sourceLabel": "נקודת מסלול תפעולית – לא הושג מקור רשמי שמאשר את החניון כמרכז מחסה",
+    "sourceUrl": "",
+    "notes": "לבדיקה מקומית. להשאיר רק אם עשיתם ולידציה פיזית."
+  },
+  {
+    "id": "modiin-yakobi",
+    "name": "חניון יעקבי – דם המכבים 28, מודיעין",
+    "kind": "מרכז מחסה המוני מאושר",
+    "lat": 31.89954,
+    "lng": 35.00993,
+    "verified": true,
+    "confidence": "verified",
+    "sourceLabel": "עיריית מודיעין – חניון יעקבי אושר ע״י פיקוד העורף כמרכז מחסה המוני",
+    "sourceUrl": "https://www.modiin.muni.il/modiinwebsite/ChannelArticleNews.aspx?PageID=2_295&id=12116",
+    "notes": "קומה מינוס 3."
+  },
+  {
+    "id": "modiin-hashdera",
+    "name": "חניון השדרה – תלתן 26, מודיעין",
+    "kind": "מרכז מחסה המוני מאושר",
+    "lat": 31.90086,
+    "lng": 35.00772,
+    "verified": true,
+    "confidence": "verified",
+    "sourceLabel": "עיריית מודיעין – חניון השדרה אושר ע״י פיקוד העורף כמרכז מחסה המוני",
+    "sourceUrl": "https://www.modiin.muni.il/modiinwebsite/ChannelArticleNews.aspx?PageID=2_295&id=12116",
+    "notes": "קומות מינוס 4 ו-5."
+  },
+  {
+    "id": "latrun-fallback",
+    "name": "לטרון – יעד ביניים לבדיקה",
+    "kind": "נקודת ירידה מהמסלול",
+    "lat": 31.83299,
+    "lng": 34.98055,
+    "verified": false,
+    "confidence": "fallback",
+    "sourceLabel": "נקודת מסלול תפעולית – נדרשת ולידציה מקומית לפני שימוש מבצעי",
+    "sourceUrl": "",
+    "notes": "להחליף ביעד מאומת כשיהיה."
+  },
+  {
+    "id": "abugosh-council",
+    "name": "בניין המועצה והחניה – אבו גוש",
+    "kind": "נקודת גיבוי / יעד לבדיקה",
+    "lat": 31.80577,
+    "lng": 35.10977,
+    "verified": false,
+    "confidence": "fallback",
+    "sourceLabel": "מועצת אבו גוש – מופיע אתר 'בניין המועצה והחניה', לא מקור שמאשר מרחב מוגן",
+    "sourceUrl": "https://abugosh.muni.il/he/the-security/",
+    "notes": "לא יעד מאומת למיגון. השארה רק כגיבוי עד לקבלת מקור טוב יותר."
+  },
+  {
+    "id": "neve-ilan-studios",
+    "name": "אולפני נווה אילן – יעד סיום",
+    "kind": "יעד מסלול",
+    "lat": 31.80854,
+    "lng": 35.11053,
+    "verified": false,
+    "confidence": "destination",
+    "sourceLabel": "יעד סופי – נקודת המיגון בתוך המתחם דורשת אימות מקומי",
+    "sourceUrl": "",
+    "notes": "להחליף בנקודת מיגון ספציפית בתוך המתחם לאחר אימות."
+  }
+]
