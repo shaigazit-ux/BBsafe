@@ -29,13 +29,22 @@ export async function onRequestGet(context) {
   let liveMeta = null;
   let liveStatus = null;
   let liveUrlUsed = '';
+  let liveError = '';
   if (liveUrl) {
     try {
       liveUrlUsed = withCacheBust(liveUrl);
-      const liveRes = await fetch(liveUrlUsed, {
+      let liveRes = await fetch(liveUrlUsed, {
         cache: 'no-store',
         cf: { cacheTtl: 0, cacheEverything: false }
       });
+      // Fallback: some upstreams may reject extra query params used for cache busting.
+      if (!liveRes.ok) {
+        liveRes = await fetch(liveUrl, {
+          cache: 'no-store',
+          cf: { cacheTtl: 0, cacheEverything: false }
+        });
+        liveUrlUsed = liveUrl;
+      }
       liveStatus = liveRes.status;
       if (liveRes.ok) {
         const payload = parseJsonText(await liveRes.text());
@@ -46,6 +55,7 @@ export async function onRequestGet(context) {
       }
     } catch (err) {
       liveStatus = 0;
+      liveError = String(err);
       liveMeta = { warning: 'live_source_unreachable' };
     }
   }
@@ -68,7 +78,7 @@ export async function onRequestGet(context) {
         ? `נתוני בסיס + עדכון חי (${liveStops.length})`
         : 'נתוני בסיס בלבד — אין מקור live overrides',
       ...(liveMeta || {}),
-      ...(debug ? { liveUrlUsed } : {})
+      ...(debug ? { liveUrlUsed, liveError } : {})
     },
     stops: Array.from(merged.values())
   };
