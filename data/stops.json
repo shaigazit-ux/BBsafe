@@ -1716,25 +1716,6 @@
     "confidence": "fallback"
   },
   {
-    "id": "ta-allenby-a-63",
-    "name": "תחנת אלנבי – כניסה A (יהודה הלוי 63, ת״א)",
-    "kind": "תחנת רכבת קלה / מרחב מוגן",
-    "lat": 32.063392,
-    "lng": 34.775525,
-    "notes": "כתובת חלופית לדיווח קודם (יהודה הלוי 47); דורש אימות שילוט כניסה בפועל.",
-    "alertPlaces": [
-      "תל אביב",
-      "תל אביב - מרכז העיר",
-      "תל אביב - מזרח",
-      "רמת גן",
-      "גבעתיים"
-    ],
-    "sourceLabel": "Strategic report + Tel Aviv emergency portal (entry-level mapping), pending point-level verification.",
-    "sourceUrl": "https://www.tel-aviv.gov.il/About/Pages/EmergenciesAndSafety.aspx",
-    "verified": false,
-    "confidence": "fallback"
-  },
-  {
     "id": "ta-bazel-42",
     "name": "חניון בזל – בזל 42, תל אביב",
     "kind": "חניון מחסה",
