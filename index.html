@@ -28,6 +28,8 @@
     .badge{display:inline-flex;gap:6px;align-items:center;padding:7px 10px;border-radius:999px;background:var(--soft);font-size:12px;font-weight:800;color:var(--muted)}
     .badge.ok{background:rgba(16,185,129,.14);color:#86efac}.badge.warn{background:rgba(245,158,11,.14);color:#fcd34d}.badge.danger{background:rgba(239,68,68,.14);color:#fca5a5}
     .pill{display:inline-flex;gap:6px;align-items:center;padding:5px 8px;border-radius:999px;background:rgba(56,189,248,.12);color:#7dd3fc;font-size:12px;font-weight:800}
+    .plannerCta{display:flex;align-items:center;justify-content:center;width:100%;margin-top:10px;padding:14px 16px;border-radius:14px;text-decoration:none;font-size:18px;font-weight:900;letter-spacing:.2px;background:linear-gradient(135deg,#2563eb,#0ea5e9);color:#fff;border:1px solid rgba(255,255,255,.18);box-shadow:0 8px 20px rgba(37,99,235,.35)}
+    .plannerCta:hover{filter:brightness(1.05)}
     .instruction{font-size:14px;line-height:1.45;font-weight:800}
     .tiny{font-size:12px;color:var(--muted);line-height:1.4}
     .locationHelp{display:none;margin-top:8px;padding:10px;border-radius:12px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.35);color:#fde68a}
@@ -57,9 +59,7 @@
       </div>
       <div id="alertBadge" class="badge warn">מקור התראות לא מחובר</div>
     </div>
-    <div class="row" style="margin-top:8px;justify-content:flex-start">
-      <a class="pill" href="/planner.html">תכנון נסיעה</a>
-    </div>
+    <a class="plannerCta" href="/planner.html">תכנון נסיעה</a>
 
     <div class="card hero stack">
       <div class="row" style="justify-content:flex-end">
