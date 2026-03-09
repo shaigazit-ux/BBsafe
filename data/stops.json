@@ -26,17 +26,43 @@
     "alertPlaces": ["תל אביב", "תל אביב - מרכז העיר", "תל אביב - מזרח", "גבעתיים", "רמת גן"]
   },
   {
-    "id": "bg-airport-p3",
-    "name": "חניון טרמינל 3 – נתב״ג",
-    "kind": "חניון תת-קרקעי / יעד ביניים",
-    "lat": 32.00098,
-    "lng": 34.88554,
+    "id": "shfirim-parking",
+    "name": "חניון שפירים",
+    "kind": "חניון / יעד ביניים",
+    "lat": 32.0015668,
+    "lng": 34.8423653,
     "verified": false,
     "confidence": "fallback",
-    "sourceLabel": "נקודת מסלול תפעולית – לא הושג מקור רשמי שמאשר את החניון כמרכז מחסה",
-    "sourceUrl": "",
-    "notes": "לבדיקה מקומית. להשאיר רק אם עשיתם ולידציה פיזית.",
-    "alertPlaces": ["נתב\"ג", "נמל התעופה בן גוריון", "אור יהודה", "יהוד מונוסון", "בית דגן"]
+    "sourceLabel": "רשימת Google Maps שסופקה ע״י המשתמש (לא מקור רשות רשמי)",
+    "sourceUrl": "https://maps.app.goo.gl/coKVFR1tG7WytDDK8",
+    "notes": "נקודת בסיס מהרשימה. דורש אימות מקומי כשימוש למיגון.",
+    "alertPlaces": ["חולון", "אזור", "בית דגן", "נתב\"ג", "אור יהודה"]
+  },
+  {
+    "id": "airport-city-golan1",
+    "name": "איירפורט סיטי – גולן 1, נתב״ג",
+    "kind": "יעד ביניים",
+    "lat": 31.9879816,
+    "lng": 34.914164,
+    "verified": false,
+    "confidence": "fallback",
+    "sourceLabel": "רשימת Google Maps שסופקה ע״י המשתמש (לא מקור רשות רשמי)",
+    "sourceUrl": "https://maps.app.goo.gl/coKVFR1tG7WytDDK8",
+    "notes": "נקודת בסיס מהרשימה. דורש אימות מקומי כשימוש למיגון.",
+    "alertPlaces": ["נתב\"ג", "נמל התעופה בן גוריון", "אור יהודה", "יהוד מונוסון", "שוהם"]
+  },
+  {
+    "id": "dor-alon-modiin-zecharya",
+    "name": "תחנת דלק דור אלון – זכריה הנביא 6, מודיעין",
+    "kind": "יעד ביניים",
+    "lat": 31.9102778,
+    "lng": 35.0136111,
+    "verified": false,
+    "confidence": "fallback",
+    "sourceLabel": "רשימת Google Maps שסופקה ע״י המשתמש (לא מקור רשות רשמי)",
+    "sourceUrl": "https://maps.app.goo.gl/coKVFR1tG7WytDDK8",
+    "notes": "נקודת בסיס מהרשימה. דורש אימות מקומי כשימוש למיגון.",
+    "alertPlaces": ["מודיעין", "מודיעין מכבים רעות", "מכבים רעות", "מודיעין עילית"]
   },
   {
     "id": "modiin-yakobi",
@@ -76,6 +102,32 @@
     "sourceUrl": "",
     "notes": "להחליף ביעד מאומת כשיהיה.",
     "alertPlaces": ["לטרון", "נחשון", "נווה שלום", "מבוא חורון"]
+  },
+  {
+    "id": "paz-shaar-hagai",
+    "name": "פז שער הגיא – מחלף שער הגיא, ירושלים",
+    "kind": "יעד ביניים",
+    "lat": 31.8154964,
+    "lng": 35.0241969,
+    "verified": false,
+    "confidence": "fallback",
+    "sourceLabel": "רשימת Google Maps שסופקה ע״י המשתמש (לא מקור רשות רשמי)",
+    "sourceUrl": "https://maps.app.goo.gl/coKVFR1tG7WytDDK8",
+    "notes": "נקודת בסיס מהרשימה. דורש אימות מקומי כשימוש למיגון.",
+    "alertPlaces": ["שער הגיא", "בית שמש", "מבשרת ציון", "נווה אילן"]
+  },
+  {
+    "id": "paz-shoeva",
+    "name": "פז שואבה – 1, שואבה",
+    "kind": "יעד ביניים",
+    "lat": 31.7987313,
+    "lng": 35.075883,
+    "verified": false,
+    "confidence": "fallback",
+    "sourceLabel": "רשימת Google Maps שסופקה ע״י המשתמש (לא מקור רשות רשמי)",
+    "sourceUrl": "https://maps.app.goo.gl/coKVFR1tG7WytDDK8",
+    "notes": "נקודת בסיס מהרשימה. דורש אימות מקומי כשימוש למיגון.",
+    "alertPlaces": ["שואבה", "קריית ענבים", "נווה אילן", "אבו גוש", "מבשרת ציון"]
   },
   {
     "id": "abugosh-council",
