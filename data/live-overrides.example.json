@@ -10,6 +10,7 @@
       "kind": "מרחב מוגן מאומת",
       "confidence": "verified",
       "verified": true,
+      "alertPlaces": ["לטרון", "נחשון", "נווה שלום"],
       "sourceLabel": "החלפה חיה לדוגמה",
       "sourceUrl": "https://example.com/source",
       "notes": "כל שדה עם אותו id ידרוס את ה-fallback המקורי."

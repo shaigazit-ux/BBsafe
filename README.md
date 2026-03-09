@@ -1,4 +1,4 @@
-# Shelter Driver V5 – public web build
+# Shelter Driver V6 – public web build
 
 Mobile-first web app for the route:
 
@@ -6,7 +6,7 @@ Mobile-first web app for the route:
 
 This build is meant to be hosted publicly and shared as a single link with a driver at the start of the ride.
 
-## What V5 adds
+## What V6 adds
 - Works for **both directions** on the same route logic.
 - Keeps the **5-minute ETA window** rule.
 - If the nearest target is **over 5 minutes**, the UI warns that the target is outside the likely window and recommends stopping at the nearest safe shelter.
@@ -15,6 +15,7 @@ This build is meant to be hosted publicly and shared as a single link with a dri
   - `?alert=1` starts with manual alert on.
   - `?demo=1` asks the demo alerts endpoint to simulate an active alert.
 - Ready for **Cloudflare Pages** with `/api/alerts`.
+- Uses **live Oref alerts** by default and filters by the driver location on the route (`lat/lng` + nearest stop mapping).
 
 ## Hosting recommendation
 ### Best free option: Cloudflare Pages
@@ -48,15 +49,23 @@ python3 -m http.server 8080
 ```
 Then open `http://localhost:8080`
 
-## Optional env var
-If you have a trusted alert source:
-
-`ALERTS_SOURCE_URL=https://your-approved-alerts-source.example/api`
+## Optional env vars
+- `ALERTS_SOURCE_URL=https://your-approved-alerts-source.example/api`
+  - Optional override. If empty, `/api/alerts` uses Oref (`alerts.json`) directly.
+- `INCLUDE_TEST_ALERTS=true`
+  - Optional. By default, Oref test alerts are ignored.
+- `ALERTS_REGION=מודיעין`
+  - Optional hard override region string (if you want fixed-region monitoring regardless of GPS).
 
 ## Useful test URLs
 - normal: `/`
 - start with manual alert active: `/?alert=1`
 - demo upstream alert mode: `/?demo=1`
+
+## Alerts API behavior
+- Frontend sends current GPS (`lat/lng`) to `/api/alerts`.
+- The function finds the nearest stop in `data/stops.json`, reads its `alertPlaces`, and matches these against Oref alert places.
+- If there is an active alert but not for the current route area, it returns inactive for driving decisions.
 
 
 ## Live override flow

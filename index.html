@@ -97,7 +97,7 @@ const CONFIG = {
   speakOnAlert: true,
   etaTargetMinutes: 5,
 };
-let map, userMarker, routeLine, choiceLine, routeSegments=[], totalRouteMeters=0, stops=[], currentNearest=null, currentPosition=null, markers=[], manualAlert=false, lastSpoken='', lastStopsMeta=null;
+let map, userMarker, routeLine, choiceLine, routeSegments=[], totalRouteMeters=0, stops=[], currentNearest=null, currentPosition=null, markers=[], manualAlert=false, lastSpoken='', lastStopsMeta=null, locationWatchId=null;
 const urlParams = new URLSearchParams(location.search);
 
 const $ = (id) => document.getElementById(id);
@@ -169,6 +169,11 @@ function qualityLabel(s){
   return 'גיבוי';
 }
 function qualityTag(conf){ return conf==='verified' ? 'verified' : conf==='destination' ? 'destination' : 'fallback'; }
+function parseJsonFromText(text){
+  const clean=String(text||'').replace(/^\uFEFF/,'').replace(/\u0000/g,'').trim();
+  if(!clean) return null;
+  return JSON.parse(clean);
+}
 function updateInstruction(active){
   if(!currentNearest){ $('instructionText').textContent='אין יעד זמין כרגע.'; return; }
   if(active){
@@ -221,16 +226,39 @@ function updateNearest(pos,alertActive=false){
     : 'יעד עד 5 דקות יקבל עדיפות. אם אין כזה, תופיע המלצה לעצור במחסה קרוב.';
 }
 async function loadStops(){
-  const res=await fetch(CONFIG.stopsUrl+'?v='+Date.now(),{cache:'no-store'});
-  const payload=await res.json();
-  stops = Array.isArray(payload) ? payload : (payload.stops || []);
-  lastStopsMeta = Array.isArray(payload) ? null : (payload.meta || null);
-  stops.forEach(s => {
-    const proj = projectPointToRoute(s.lat,s.lng);
-    s.routeMeters = proj.meters;
-    s.routeOffsetDist = proj.dist;
-  });
-  if(lastStopsMeta?.message){ $('refreshText').textContent = lastStopsMeta.message; }
+  const candidates=[
+    {url: `${CONFIG.stopsUrl}?v=${Date.now()}`, label: 'api'},
+    {url: `/data/stops.json?v=${Date.now()}`, label: 'static'}
+  ];
+  let lastErr=null;
+  for(const candidate of candidates){
+    try{
+      const res=await fetch(candidate.url,{cache:'no-store'});
+      if(!res.ok) throw new Error(`HTTP ${res.status}`);
+      const text=await res.text();
+      const payload=parseJsonFromText(text);
+      if(!payload) throw new Error('empty payload');
+      stops = Array.isArray(payload) ? payload : (payload.stops || []);
+      lastStopsMeta = Array.isArray(payload) ? null : (payload.meta || null);
+      stops.forEach(s => {
+        const proj = projectPointToRoute(s.lat,s.lng);
+        s.routeMeters = proj.meters;
+        s.routeOffsetDist = proj.dist;
+      });
+      if(lastStopsMeta?.message){
+        $('refreshText').textContent = lastStopsMeta.message;
+      }else if(candidate.label==='static'){
+        $('refreshText').textContent = 'נטען מקובץ בסיס (ללא merge חי)';
+      }
+      return;
+    }catch(err){
+      lastErr=err;
+    }
+  }
+  stops=[]; lastStopsMeta=null;
+  $('refreshText').textContent='טעינת יעדים נכשלה';
+  $('windowHint').textContent='בדקו ש-Cloudflare Pages Functions פעיל וש-/api/stops מחזיר JSON.';
+  if(lastErr){ $('routeStatus').textContent=`שגיאת טעינת יעדים: ${lastErr.message}`; }
 }
 function renderStops(){
   markers.forEach(m=>map.removeLayer(m)); markers=[];
@@ -239,12 +267,22 @@ function renderStops(){
     marker.bindPopup(`<strong>${s.name}</strong><br>${s.kind}<br>${qualityLabel(s)}<br>${s.notes || ''}`); markers.push(marker);
   }
 }
-function openGoogle(){ if(!currentNearest) return; location.href=`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(currentNearest.lat+','+currentNearest.lng)}&travelmode=driving`; }
-function openWaze(){ if(!currentNearest) return; location.href=`https://waze.com/ul?ll=${currentNearest.lat}%2C${currentNearest.lng}&navigate=yes`; }
+function openGoogle(){ if(!currentNearest || !currentNearest.withinWindow) return; location.href=`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(currentNearest.lat+','+currentNearest.lng)}&travelmode=driving`; }
+function openWaze(){ if(!currentNearest || !currentNearest.withinWindow) return; location.href=`https://waze.com/ul?ll=${currentNearest.lat}%2C${currentNearest.lng}&navigate=yes`; }
+function buildAlertsUrl(){
+  const alertUrl = new URL(CONFIG.alertsUrl, location.origin);
+  alertUrl.searchParams.set('_', Date.now().toString());
+  if(currentPosition?.coords){
+    alertUrl.searchParams.set('lat', currentPosition.coords.latitude.toFixed(6));
+    alertUrl.searchParams.set('lng', currentPosition.coords.longitude.toFixed(6));
+  }
+  if(currentNearest?.alertRegion){ alertUrl.searchParams.set('region', currentNearest.alertRegion); }
+  return alertUrl.toString();
+}
 async function pollAlerts(){
   try{
     $('refreshText').textContent='מתעדכן…';
-    const res=await fetch(CONFIG.alertsUrl+'?_='+Date.now(),{cache:'no-store'}); if(!res.ok) throw new Error('alerts');
+    const res=await fetch(buildAlertsUrl(),{cache:'no-store'}); if(!res.ok) throw new Error('alerts');
     const data=await res.json(); const active = manualAlert || !!data.active; const title = active ? (manualAlert ? 'התראה ידנית פעילה' : (data.title || 'התראה פעילה')) : (data.title || 'אין התראה');
     setBadge(active ? 'danger' : 'ok', title);
     if(currentPosition) updateNearest(currentPosition, active);
@@ -268,13 +306,32 @@ function initMap(){
 }
 function startLocation(){
   if(!navigator.geolocation){ $('routeStatus').textContent='הדפדפן הזה לא תומך במיקום.'; return; }
-  navigator.geolocation.watchPosition(pos => updateNearest(pos, $('alertBadge').classList.contains('danger')), err => { $('routeStatus').textContent='שגיאת מיקום: '+err.message; }, {enableHighAccuracy:true, timeout:15000, maximumAge:2000});
+  const onSuccess = (pos) => updateNearest(pos, $('alertBadge').classList.contains('danger'));
+  const onError = (err) => {
+    if(err?.code===1){
+      $('routeStatus').textContent='הרשאת מיקום נדחתה/נחסמה. אפשרו Location עבור האתר ורעננו.';
+      return;
+    }
+    $('routeStatus').textContent='שגיאת מיקום: '+(err?.message || 'unknown');
+  };
+
+  if(navigator.permissions?.query){
+    navigator.permissions.query({name:'geolocation'}).then((status)=>{
+      if(status.state==='denied'){
+        $('routeStatus').textContent='הרשאת מיקום חסומה בדפדפן. אפשרו Location עבור bbsafe.pages.dev.';
+      }
+    }).catch(()=>{});
+  }
+
+  navigator.geolocation.getCurrentPosition(onSuccess, onError, {enableHighAccuracy:true, timeout:15000, maximumAge:0});
+  if(locationWatchId!==null){ navigator.geolocation.clearWatch(locationWatchId); }
+  locationWatchId = navigator.geolocation.watchPosition(onSuccess, onError, {enableHighAccuracy:true, timeout:15000, maximumAge:2000});
 }
 (async function(){
   if (urlParams.get('alert') === '1') manualAlert = true;
   if (urlParams.get('demo') === '1') CONFIG.alertsUrl = '/api/alerts?demo=1';
   $('manualAlertBtn').textContent = manualAlert ? 'התראה ידנית: פעילה' : 'התראה ידנית: כבוי';
-  initMap(); await loadStops(); renderStops(); startLocation(); $('navBtn').addEventListener('click', openGoogle); $('wazeBtn').addEventListener('click', openWaze);
+  initMap(); startLocation(); await loadStops(); renderStops(); if(currentPosition){ updateNearest(currentPosition, $('alertBadge').classList.contains('danger')); } $('navBtn').addEventListener('click', openGoogle); $('wazeBtn').addEventListener('click', openWaze);
   $('manualAlertBtn').addEventListener('click',()=>{ manualAlert=!manualAlert; $('manualAlertBtn').textContent=manualAlert ? 'התראה ידנית: פעילה' : 'התראה ידנית: כבוי'; pollAlerts(); });
   await pollAlerts(); setInterval(pollAlerts, CONFIG.pollMs);
 })();
