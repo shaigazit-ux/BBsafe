@@ -133,6 +133,11 @@ function confidencePenalty(conf){
   if(conf==='destination') return 1.2;
   return 2.5;
 }
+function confidenceRank(conf){
+  if(conf==='verified') return 0;
+  if(conf==='destination') return 1;
+  return 2;
+}
 function estimateRoadEta(routePos, stop){
   const ahead=stop.routeMeters-routePos.meters;
   const routeGap=Math.abs(ahead);
@@ -149,21 +154,18 @@ function rankStops(lat,lng,routePos){
   const localMode = routePos.dist > CONFIG.offRouteLocalModeMeters;
   const items = stops.map(s => {
     const crow=haversine(lat,lng,s.lat,s.lng); const targetRoute=s.routeMeters; const ahead=targetRoute-routePos.meters; const behind=ahead<0;
-    const routeGap = localMode ? crow : Math.abs(ahead);
-    const eta = localMode
-      ? estDriveMinutes(crow) + (s.confidence==='verified' ? 0 : 0.4)
-      : estimateRoadEta(routePos, s);
-    const score = localMode
-      ? eta + confidencePenalty(s.confidence) * 0.5
-      : eta + confidencePenalty(s.confidence) + (behind ? 3 : 0);
-    return {...s,crow,ahead,routeGap,score,eta,localMode,withinWindow: eta <= CONFIG.etaTargetMinutes};
+    const routeGap = Math.abs(ahead);
+    const routeEta = estimateRoadEta(routePos, s);
+    const directEta = estDriveMinutes(crow) + 0.6;
+    const eta = localMode ? directEta : Math.min(routeEta, directEta + 0.4);
+    return {...s,crow,ahead,behind,routeGap,routeEta,directEta,eta,localMode,withinWindow: eta <= CONFIG.etaTargetMinutes};
   });
-  const preferred = items.filter(x=>x.withinWindow && x.confidence==='verified').sort((a,b)=>a.eta-b.eta || a.routeGap-b.routeGap);
-  const withinAny = items.filter(x=>x.withinWindow).sort((a,b)=>a.score-b.score || a.routeGap-b.routeGap);
-  const fallback = items.sort((a,b)=>a.score-b.score || a.routeGap-b.routeGap);
-  return preferred.length ? preferred.concat(fallback.filter(x=>!preferred.find(p=>p.id===x.id)))
-       : withinAny.length ? withinAny.concat(fallback.filter(x=>!withinAny.find(p=>p.id===x.id)))
-       : fallback;
+  return items.sort((a,b)=>
+    a.eta-b.eta ||
+    confidenceRank(a.confidence)-confidenceRank(b.confidence) ||
+    a.crow-b.crow ||
+    a.routeGap-b.routeGap
+  );
 }
 
 function setBadge(state,label){
@@ -186,7 +188,7 @@ function updateInstruction(active){
   if(active){
     $('instructionText').textContent = currentNearest.withinWindow
       ? `התראה פעילה. סע/י עכשיו אל ${currentNearest.name}. זמן הגעה משוער ${fmtEta(currentNearest.eta)}.`
-      : `התראה פעילה. אין כרגע יעד מאומת בתוך חלון 7 הדקות. היעד המחושב הקרוב ביותר הוא ${currentNearest.name} (${fmtEta(currentNearest.eta)}), ולכן ההמלצה היא לעצור מיד במחסה קרוב ובטוח ככל האפשר ולא להמשיך ליעד רחוק.`;
+      : `התראה פעילה. אין כרגע יעד בתוך חלון 7 הדקות. היעד המחושב הקרוב ביותר הוא ${currentNearest.name} (${fmtEta(currentNearest.eta)}), ולכן ההמלצה היא לעצור מיד במחסה קרוב ובטוח ככל האפשר ולא להמשיך ליעד רחוק.`;
     return;
   }
   $('instructionText').textContent = currentNearest.withinWindow
@@ -203,11 +205,11 @@ function updateNearest(pos,alertActive=false){
   const routePos=projectPointToRoute(lat,lng); const ranked=rankStops(lat,lng,routePos); const top=ranked.slice(0,3);
   currentNearest=top[0] || null;
   const localMode = !!(currentNearest && currentNearest.localMode);
-  $('routeStatus').textContent = `מיקום: ${lat.toFixed(5)}, ${lng.toFixed(5)} · דיוק ${Math.round(accuracy)} מ׳ · סטייה מהמסלול ${fmtDist(routePos.dist)}${localMode ? ' · מצב עירוני: דירוג לפי קרבה ישירה' : ''}`;
+  $('routeStatus').textContent = `מיקום: ${lat.toFixed(5)}, ${lng.toFixed(5)} · דיוק ${Math.round(accuracy)} מ׳ · סטייה מהמסלול ${fmtDist(routePos.dist)}${localMode ? ' · מצב עירוני: דירוג לפי ETA נהיגה ישיר' : ''}`;
   $('routeProgressText').textContent = `${Math.round(routePct(routePos.meters))}%`;
   $('routeProgressFill').style.width = `${routePct(routePos.meters)}%`;
   $('nearestName').textContent = currentNearest ? currentNearest.name : '—';
-  $('nearestDistance').textContent = currentNearest ? (localMode ? fmtDist(currentNearest.crow) : `${fmtDist(currentNearest.crow)} / ציר ${fmtDist(currentNearest.routeGap)}`) : '—';
+  $('nearestDistance').textContent = currentNearest ? `${fmtDist(currentNearest.crow)}${localMode ? '' : ` / ציר ${fmtDist(currentNearest.routeGap)}`}` : '—';
   $('nearestEta').textContent = currentNearest ? fmtEta(currentNearest.eta) : '—';
   $('dataQuality').textContent = qualityLabel(currentNearest);
   $('etaWindowStatus').textContent = etaWindowLabel(currentNearest);
@@ -230,7 +232,7 @@ function updateNearest(pos,alertActive=false){
   $('wazeBtn').textContent = navEnabled ? 'פתח Waze' : 'אין יעד בתוך 7 דק׳';
   updateInstruction(alertActive);
   if(localMode){
-    $('windowHint').textContent='מצב עירוני פעיל: דירוג היעדים נעשה לפי קרבה ישירה מהמיקום הנוכחי.';
+    $('windowHint').textContent='מצב עירוני פעיל: דירוג היעדים נעשה לפי זמן הגעה מוערך בנסיעה.';
     return;
   }
   $('windowHint').textContent = currentNearest && !currentNearest.withinWindow
